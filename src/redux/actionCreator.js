@@ -16,4 +16,19 @@ function fetchingArticles(){
   }
 }
 
-export{fetchingArticles,fetchedArticles}
+function fetchedCountries(countries){
+  return {type:"FETCHED_COUNTRIES", countries}
+}
+
+
+function fetchingCountries(){
+  return(dispatch)=>{
+    fetch(`http://localhost:3000/countries`)
+    .then(res=>res.json())
+    .then(countries=> {
+      dispatch(fetchedCountries(countries))
+    })
+  }
+}
+
+export{fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries}
