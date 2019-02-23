@@ -10,7 +10,7 @@ class Country extends Component {
   render() {
     return !this.props.country?null:(
         <div>
-          {this.props.country.name}
+          <center><h1>{this.props.country.name}</h1></center>
           <ArticleList/>
         </div>
     )

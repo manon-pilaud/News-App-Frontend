@@ -5,11 +5,13 @@ export default class ArticleCard extends React.Component{
     return(
       <div>
         <a href={url}>
+        <center>
         <h5>{title}</h5>
-        <img src={urlToImage}/>
+        </center>
+        <img className="crop" src={urlToImage}/>
       </a>
         <p>{content}</p>
-        <p>{source.name}</p>
+        <p>Source: {source.name}</p>
       </div>
     )
   }
