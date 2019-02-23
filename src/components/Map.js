@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactMapboxGl, {GeoJSONLayer} from "react-mapbox-gl";
-
+import {connect} from 'react-redux'
 
 const MapKey = process.env.REACT_APP_MAP_API_KEY;
 const Map = ReactMapboxGl({
@@ -16,18 +16,18 @@ const fillPaint: MapboxGL.FillPaint={
     'fill-color': 'rgba(246,245,245,0)'
 }
 
-
-
-
-const onClickMap=(features)=> {
+const onClickMap=(features,countries)=> {
+  if (Array.isArray(countries)){
+    let countriesList = countries
+    console.log(countriesList)
+  }
   if(Array.isArray(features)){
-    let feature = features[0].properties.sovereignt
-    console.log(feature)
+    let name = features[0].properties.sovereignt
+    console.log(name)
   }
 }
 
-export default class WorldMap extends React.Component{
-
+class WorldMap extends React.Component{
   render(){
     return(
       <div>
@@ -45,7 +45,7 @@ export default class WorldMap extends React.Component{
             linePaint={linePaint}
             fillOnClick={
               (e)=>{
-                onClickMap(e.features)}}
+                onClickMap(e.features, this.props.countries)}}
             >
           </GeoJSONLayer>
           </Map>
@@ -54,3 +54,12 @@ export default class WorldMap extends React.Component{
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return{
+    countries: state.countries
+  }
+}
+
+
+export default(connect(mapStateToProps)(WorldMap));

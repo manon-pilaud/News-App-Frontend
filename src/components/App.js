@@ -5,11 +5,10 @@ import WorldMap from './Map'
 import Country from './Country'
 import ArticleContainer from './ArticleContainer'
 import {connect} from 'react-redux'
-import {fetchingArticles,fetchingCountries} from '../redux/actionCreator'
+import {fetchingCountries} from '../redux/actionCreator'
 
 class App extends Component {
    componentDidMount(){
-     this.props.fetchingArticles()
      this.props.fetchingCountries()
    }
   render() {
@@ -30,7 +29,6 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch =>{
   return{
-    fetchingArticles:()=>{dispatch(fetchingArticles())},
     fetchingCountries:()=>{dispatch(fetchingCountries())}
   }
 }
