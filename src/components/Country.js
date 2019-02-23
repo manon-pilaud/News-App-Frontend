@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import {fetchingArticles} from '../redux/actionCreator'
+import ArticleList from './ArticleList'
 class Country extends Component {
-
   componentWillReceiveProps(nextProps) {
     this.props.fetchingArticles(nextProps.country)
    }
@@ -11,6 +11,7 @@ class Country extends Component {
     return !this.props.country?null:(
         <div>
           {this.props.country.name}
+          <ArticleList/>
         </div>
     )
   }

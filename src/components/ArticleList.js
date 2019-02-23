@@ -1,16 +1,25 @@
 import React from 'react'
-import Article from './ArticleCard'
+import {connect} from 'react-redux'
+import ArticleCard from './ArticleCard'
 
-export default class ArticleList extends React.Component{
-  render(){
-    return(
-      <div>
-      <Article/>
-      <Article/>
-      <Article/>
-      <Article/>
-      <Article/>
-      </div>
-    )
+
+const ArticleList = props => {
+  return !props.articles?null:(
+    <div>
+        {props.articles.map((article,index) => (
+          <ArticleCard
+            key={index}
+            articleInfo={article}
+          />
+        ))}
+    </div>
+  )
+}
+
+const mapStateToProps = state => {
+  return{
+    articles: state.articles.articles
   }
 }
+
+export default connect(mapStateToProps)(ArticleList);
