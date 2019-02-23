@@ -6,13 +6,22 @@ function fetchedArticles(articles){
 }
 
 
-function fetchingArticles(){
+function fetchingArticles(country){
   return(dispatch)=>{
-    fetch(`https://newsapi.org/v2/everything?q=kenya=&apiKey=${NewsKey}`)
+    if (country.code){
+    fetch(`https://newsapi.org/v2/top-headlines?country=${country.code}&apiKey=${NewsKey}`)
     .then(res=>res.json())
     .then(articles=> {
       dispatch(fetchedArticles(articles))
     })
+    }
+    else{
+      fetch(`https://newsapi.org/v2/everything?q=${country.name}=&apiKey=${NewsKey}`)
+      .then(res=>res.json())
+      .then(articles=> {
+        dispatch(fetchedArticles(articles))
+      })
+    }
   }
 }
 

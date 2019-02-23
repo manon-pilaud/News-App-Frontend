@@ -3,11 +3,11 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import {fetchingArticles} from '../redux/actionCreator'
 class Country extends Component {
-  componentDidMount(){
-    this.props.fetchingArticles()
-  }
+
+  componentWillReceiveProps(nextProps) {
+    this.props.fetchingArticles(nextProps.country)
+   }
   render() {
-    console.log(this.props.country)
     return !this.props.country?null:(
         <div>
           {this.props.country.name}
@@ -25,7 +25,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps=dispatch=>{
   return{
-    fetchingArticles:()=>{dispatch(fetchingArticles())}
+    fetchingArticles:(country)=>{dispatch(fetchingArticles(country))}
   }
 }
 
