@@ -5,17 +5,26 @@ function fetchedArticles(articles){
   return {type:"FETCHED_ARTICLES", articles}
 }
 
+function fetchedLocalArticles(localArticles){
+  return {type:"FETCHED_LOCAL_ARTICLES", localArticles}
+}
 
-function fetchingArticles(country){
+function fetchingLocalArticles(country){
   return(dispatch)=>{
     if (country.code){
     fetch(`https://newsapi.org/v2/top-headlines?country=${country.code}&apiKey=${NewsKey}`)
     .then(res=>res.json())
-    .then(articles=> {
-      dispatch(fetchedArticles(articles))
+    .then(localArticles=> {
+      dispatch(fetchedLocalArticles(localArticles))
     })
     }
-    else if(country.name === "Jordan"){
+  }
+}
+
+
+function fetchingArticles(country){
+  return(dispatch)=>{
+    if(country.name === "Jordan"){
       fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan‎=&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
@@ -47,4 +56,4 @@ function fetchingCountries(){
   }
 }
 
-export{fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries}
+export{fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}

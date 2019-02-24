@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import {fetchingArticles} from '../redux/actionCreator'
+import{fetchingLocalArticles} from '../redux/actionCreator'
 import ArticleList from './ArticleList'
 import WorldFacts from '../factbook.json'
 
@@ -9,6 +10,7 @@ import WorldFacts from '../factbook.json'
 class Country extends Component {
   componentWillReceiveProps(nextProps) {
     this.props.fetchingArticles(nextProps.country)
+    this.props.fetchingLocalArticles(nextProps.country)
    }
   render() {
     return !this.props.country?null:(
@@ -64,7 +66,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps=dispatch=>{
   return{
-    fetchingArticles:(country)=>{dispatch(fetchingArticles(country))}
+    fetchingArticles:(country)=>{dispatch(fetchingArticles(country))},
+    fetchingLocalArticles:(country)=>{dispatch(fetchingLocalArticles(country))}
   }
 }
 

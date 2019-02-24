@@ -9,6 +9,15 @@ const articlesReducer=(oldState=[],action)=>{
   }
 }
 
+const localArticlesReducer=(oldState=[],action)=>{
+  switch(action.type){
+    case "FETCHED_LOCAL_ARTICLES":
+      return action.localArticles
+    default:
+      return oldState
+  }
+}
+
 const countriesReducer=(oldState=[],action)=>{
   switch(action.type){
     case "FETCHED_COUNTRIES":
@@ -20,6 +29,7 @@ const countriesReducer=(oldState=[],action)=>{
 
 const rootReducer =combineReducers({
   articles: articlesReducer,
+  localArticles: localArticlesReducer,
   countries: countriesReducer
 })
 
