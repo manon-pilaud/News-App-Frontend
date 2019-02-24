@@ -32,9 +32,9 @@ class Country extends Component {
           <p><strong>Capital:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.capital.name}  {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.capital.capital}</p>
           <p><strong>Government Type:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.government_type}</p>
           <p><strong>Population:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.people.population.total}</p>
-
+          <p><strong>Climate:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.geography.climate}</p>
           <p><strong>Languages:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.people.languages.language.map(language=>language.name).join(', ')}</p>
-
+          <p><strong>Ethnicities:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.people.ethnic_groups.ethnicity.map(ethnicity=>ethnicity.name).join(', ')}</p>
         <h3>Background</h3>
           <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.introduction.background.replace(`SUMMARY: PDF`,'')}</p>
 
@@ -57,7 +57,7 @@ class Country extends Component {
         </div>:null}
         </div>
           :null}
-          
+
           <ArticleList/>
         </div>
     )
