@@ -9,7 +9,7 @@ const articlesReducer=(oldState=[],action)=>{
   }
 }
 
-const localArticlesReducer=(oldState=[],action)=>{
+const localArticlesReducer=(oldState="",action)=>{
   switch(action.type){
     case "FETCHED_LOCAL_ARTICLES":
       return action.localArticles

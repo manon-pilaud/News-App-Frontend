@@ -18,6 +18,20 @@ function fetchingLocalArticles(country){
       dispatch(fetchedLocalArticles(localArticles))
     })
     }
+    else if(country.name === "Jordan"){
+      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan‎=&apiKey=${NewsKey}`)
+      .then(res=>res.json())
+      .then(localArticles=> {
+        dispatch(fetchedLocalArticles(localArticles))
+      })
+    }
+    else{
+      fetch(`https://newsapi.org/v2/everything?q=${country.name}=&apiKey=${NewsKey}`)
+      .then(res=>res.json())
+      .then(localArticles=> {
+        dispatch(fetchedLocalArticles(localArticles))
+      })
+    }
   }
 }
 

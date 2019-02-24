@@ -24,14 +24,23 @@ class ArticleList extends React.Component{
   }
 
   render(){
-  return !this.props.articles || !this.props.localArticles?null:(
+
+  return this.props.articles && this.props.localArticles?(
     <div className="articles-cont">
       <h3>News</h3>
       <button onClick={this.clicked}>Hide News</button>
       <input type="checkbox" id="switch" onChange={this.toggled}/><label htmlFor="switch">Toggle</label>
       {!this.state.clicked?
       <div className="all-articles">
-        {!this.state.toggled?
+        {this.state.toggled?
+          <div>
+            {this.props.localArticles.map((article,index) => (
+              <ArticleCard
+                key={index}
+                articleInfo={article}
+              />
+            ))}
+          </div>:
         <div>
           {this.props.articles.map((article,index) => (
             <ArticleCard
@@ -40,19 +49,12 @@ class ArticleList extends React.Component{
             />
           ))}
         </div>
-        :
-        <div>
-          {this.props.localArticles.map((article,index) => (
-            <ArticleCard
-              key={index}
-              articleInfo={article}
-            />
-          ))}
-        </div>}
+      }
+
       </div>
       :null}
     </div>
-  )
+  ):null
   }
 }
 

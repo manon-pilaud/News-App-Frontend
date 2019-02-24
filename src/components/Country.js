@@ -22,35 +22,42 @@ class Country extends Component {
           <div className="country-info">
           <h2>{this.props.country.name} Profile</h2>
           <h3>Quick Facts</h3>
-          <h5>Current Leaders:</h5>
-          <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.executive_branch.chief_of_state}</p>
-          <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.executive_branch.head_of_government}</p>
-          <p>Capital: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.capital.name}</p>
-          <p>Government Type: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.government_type}</p>
-          <p>Population: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.people.population.total}</p>
+          <strong>Current Leaders:</strong>
+          <ul>
+            {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.executive_branch.chief_of_state?
+            <li>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.executive_branch.chief_of_state}</li>:null}
+            {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.executive_branch.head_of_government?
+            <li>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.executive_branch.head_of_government}</li>:null}
+          </ul>
+          <p><strong>Capital:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.capital.name}  {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.capital.capital}</p>
+          <p><strong>Government Type:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.government_type}</p>
+          <p><strong>Population:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.people.population.total}</p>
+
+          <p><strong>Languages:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.people.languages.language.map(language=>language.name).join(', ')}</p>
 
         <h3>Background</h3>
-          <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.introduction.background}</p>
+          <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.introduction.background.replace(`SUMMARY: PDF`,'')}</p>
 
           <h3>Economy</h3>
           <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.economy.overview}</p>
 
           {WorldFacts.countries[this.props.country.name.toLowerCase()].data.terrorism?<div>
-          <p>Terrorism</p>
+          <h3>Terrorism</h3>
           <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.terrorism.home_based}</p>
           <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.terrorism.foreign_based}</p>
         </div>:null}
 
           {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues?
           <div>
-          <p>transnational issues</p>
-          <p>Disputes: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues.disputes}</p>
+          <h3>transnational issues</h3>
+          <p><strong>Disputes:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues.disputes}</p>
           {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues.illicit_drugs?
-          <p>Illicit Drugs: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues.illicit_drugs.note}</p>
+          <p><strong>Illicit Drugs:</strong> {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues.illicit_drugs.note}</p>
           :null}
         </div>:null}
         </div>
           :null}
+          
           <ArticleList/>
         </div>
     )
