@@ -14,6 +14,8 @@ class Country extends Component {
     return !this.props.country?null:(
         <div>
           <center><h1>{this.props.country.name}</h1></center>
+          <center><button>Follow {this.props.country.name}</button></center>
+          <center><img src={`https://www.countryflags.io/${this.props.country.code}/flat/64.png`}/></center>
           {WorldFacts.countries[this.props.country.name.toLowerCase()]?
           <div className="country-info">
           <h2>{this.props.country.name} Profile</h2>
@@ -31,15 +33,21 @@ class Country extends Component {
           <h3>Economy</h3>
           <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.economy.overview}</p>
 
-
+          {WorldFacts.countries[this.props.country.name.toLowerCase()].data.terrorism?<div>
           <p>Terrorism</p>
           <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.terrorism.home_based}</p>
           <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.terrorism.foreign_based}</p>
-          <p>transnational issues</p>
+        </div>:null}
 
+          {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues?
+          <div>
+          <p>transnational issues</p>
           <p>Disputes: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues.disputes}</p>
+          {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues.illicit_drugs?
           <p>Illicit Drugs: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.transnational_issues.illicit_drugs.note}</p>
-          </div>
+          :null}
+        </div>:null}
+        </div>
           :null}
           <ArticleList/>
         </div>

@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactMapboxGl, {GeoJSONLayer} from "react-mapbox-gl";
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom';
-import {Link} from 'react-router-dom'
+// import {withRouter} from 'react-router-dom';
+// import {Link} from 'react-router-dom'
 
 const MapKey = process.env.REACT_APP_MAP_API_KEY;
 const Map = ReactMapboxGl({
@@ -30,6 +30,7 @@ const onClickMap=(features,countries)=> {
       }
       else{
         console.log("attempting to create",name)
+        //Might just seed data so I can use flag API
       }
   }
 
