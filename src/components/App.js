@@ -5,6 +5,7 @@ import WorldMap from './Map'
 import Country from './Country'
 import {connect} from 'react-redux'
 import {fetchingCountries} from '../redux/actionCreator'
+import Navbar from './Navbar'
 
 class App extends Component {
    componentDidMount(){
@@ -13,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Navbar/>
         <Switch>
           <Route
              path="/country/:id"

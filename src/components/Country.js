@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import {fetchingArticles} from '../redux/actionCreator'
 import ArticleList from './ArticleList'
+import WorldFacts from '../factbook.json'
+
+
 class Country extends Component {
   componentWillReceiveProps(nextProps) {
     this.props.fetchingArticles(nextProps.country)
@@ -11,6 +14,20 @@ class Country extends Component {
     return !this.props.country?null:(
         <div>
           <center><h1>{this.props.country.name}</h1></center>
+          {WorldFacts.countries[this.props.country.name.toLowerCase()]?
+          <div className="country-info">
+          <h3>Quick Facts</h3>
+          <h5>Current Leaders:</h5>
+            <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.executive_branch.chief_of_state}</p>
+          <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.executive_branch.head_of_government}</p>
+          <p>Capital: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.government.capital.name}</p>
+          <p>Population: {WorldFacts.countries[this.props.country.name.toLowerCase()].data.people.population.total}</p>
+        <h3>Background</h3>
+          <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.introduction.background}</p>
+          <h3>Economy</h3>
+          <p>{WorldFacts.countries[this.props.country.name.toLowerCase()].data.economy.overview}</p>
+          </div>
+          :null}
           <ArticleList/>
         </div>
     )
