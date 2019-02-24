@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 export default class Navbar extends React.Component{
   render(){
     return(
@@ -19,8 +19,8 @@ export default class Navbar extends React.Component{
     </div>
     <input type="checkbox" id="nav-check"/>
     <div className="nav-links">
-      <a target="_blank">Home</a>
-      <a target="_blank">Map</a>
+      <Link to="/">Home</Link>
+      <Link to="/map">Map</Link>
       <a target="_blank">Something</a>
       <a target="_blank">SomethingElse</a>
     </div>

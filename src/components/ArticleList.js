@@ -21,6 +21,7 @@ class ArticleList extends React.Component{
     <div className="articles-cont">
       <h3>News</h3>
       <button onClick={this.clicked}>Hide News</button>
+      <input type="checkbox" id="switch"/><label for="switch">Toggle</label>
       {!this.state.clicked?
       <div>
         {this.props.articles.map((article,index) => (

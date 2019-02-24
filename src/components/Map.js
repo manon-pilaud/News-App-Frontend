@@ -2,6 +2,7 @@ import React from 'react'
 import ReactMapboxGl, {GeoJSONLayer} from "react-mapbox-gl";
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom'
 
 const MapKey = process.env.REACT_APP_MAP_API_KEY;
 const Map = ReactMapboxGl({
@@ -20,12 +21,10 @@ const fillPaint: MapboxGL.FillPaint={
 const onClickMap=(features,countries)=> {
   if (Array.isArray(countries) && Array.isArray(features)){
     let countriesList = countries
-    console.log(countriesList)
     let name = features[0].properties.sovereignt
-    console.log(name)
     let foundCountry = countriesList.find(country=>name.includes(country.name))
       if(foundCountry){
-        //Not working why
+        //Not working why-Cannot read property props of undefined
         console.log(foundCountry)
         this.props.history.push(`/country/${foundCountry.id}`)
       }
@@ -74,4 +73,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default withRouter(connect(mapStateToProps)(WorldMap));
+export default (connect(mapStateToProps)(WorldMap));

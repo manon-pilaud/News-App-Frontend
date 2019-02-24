@@ -3,6 +3,7 @@ import {Route, Switch } from "react-router";
 import '../App.css';
 import WorldMap from './Map'
 import Country from './Country'
+import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {fetchingCountries} from '../redux/actionCreator'
 import Navbar from './Navbar'
@@ -33,4 +34,4 @@ const mapDispatchToProps = dispatch =>{
   }
 }
 
-export default (connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));
