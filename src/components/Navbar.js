@@ -21,6 +21,8 @@ export default class Navbar extends React.Component{
     <div className="nav-links">
       <Link to="/">Home</Link>
       <Link to="/map">Map</Link>
+      <Link to="/map">Reading List</Link>
+      <Link to="/country/4">My Countries</Link>
     </div>
   </div>
     </div>

@@ -10,7 +10,9 @@ export default class ArticleCard extends React.Component{
         </center>
         <img className="crop" alt={title} src={urlToImage}/>
       </a>
+      {content && !content.includes("..") && !content.includes(",,") && !content.includes("%") && !content.includes("()")? 
         <p>{content}</p>
+        :null}
         <p>Source: {source.name}</p>
         <button>Add to reading List</button>
       </div>

@@ -18,32 +18,25 @@ const fillPaint: MapboxGL.FillPaint={
     'fill-color': 'rgba(246,245,245,0)'
 }
 
-const onClickMap=(features,countries)=> {
-  if (Array.isArray(countries) && Array.isArray(features)){
-    let countriesList = countries
-    let name = features[0].properties.sovereignt
-    let foundCountry = countriesList.find(country=>name.includes(country.name))
-      if(foundCountry){
-        //Not working why-Cannot read property props of undefined
-        console.log(foundCountry)
-        this.props.history.push(`/country/${foundCountry.id}`)
-      }
-      else{
-        console.log("attempting to create",name)
-        //Might just seed data so I can use flag API
-      }
-  }
-
-}
 
 class WorldMap extends React.Component{
+  onClickMap=(features,countries)=> {
+    if (Array.isArray(countries) && Array.isArray(features)){
+      let countriesList = countries
+      let name = features[0].properties.sovereignt
+      let foundCountry = countriesList.find(country=>name.includes(country.name))
+      if(foundCountry){
+        this.props.history.push(`/country/${foundCountry.id}`)
+      }
+    }
+
+  }
   render(){
     return(
       <div>
-
         <Map
           containerStyle={{ width: '100vw', height: '100vh'}}
-          onClick={onClickMap}
+          onClick={this.onClickMap}
           container={'map'}
           style={'mapbox://styles/mandyyp/cjsdtzumk1jih1gr1th20nafp'}
           center={[11.883267, 41.865919]}
@@ -56,7 +49,7 @@ class WorldMap extends React.Component{
             linePaint={linePaint}
             fillOnClick={
               (e)=>{
-                onClickMap(e.features, this.props.countries)}}
+                this.onClickMap(e.features, this.props.countries)}}
             >
           </GeoJSONLayer>
           </Map>

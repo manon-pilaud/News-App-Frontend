@@ -19,14 +19,14 @@ function fetchingLocalArticles(country){
     })
     }
     else if(country.name === "Jordan"){
-      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan‎=&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(localArticles=> {
         dispatch(fetchedLocalArticles(localArticles))
       })
     }
     else{
-      fetch(`https://newsapi.org/v2/everything?q=${country.name}=&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/top-headlines?q=${country.name}&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(localArticles=> {
         dispatch(fetchedLocalArticles(localArticles))
@@ -39,14 +39,14 @@ function fetchingLocalArticles(country){
 function fetchingArticles(country){
   return(dispatch)=>{
     if(country.name === "Jordan"){
-      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan‎=&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
         dispatch(fetchedArticles(articles))
       })
     }
     else{
-      fetch(`https://newsapi.org/v2/everything?q=${country.name}=&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?q=${country.name}&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
         dispatch(fetchedArticles(articles))
