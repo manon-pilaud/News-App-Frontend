@@ -11,13 +11,15 @@ class Country extends Component {
   componentWillReceiveProps(nextProps) {
     this.props.fetchingArticles(nextProps.country)
     this.props.fetchingLocalArticles(nextProps.country)
-   }
+  }
   render() {
     return !this.props.country?null:(
         <div>
-          <center><h1>{this.props.country.name}</h1></center>
-          <center><button>Follow {this.props.country.name}</button></center>
-          <center><img src={`https://www.countryflags.io/${this.props.country.code}/flat/64.png`}/></center>
+          <div className="flag-and-header">
+          <h1>{this.props.country.name}</h1>
+          <button>Follow {this.props.country.name}</button>
+          <center><img src={`https://www.countryflags.io/${this.props.country.flag}/flat/64.png`}/></center>
+          </div>
           {WorldFacts.countries[this.props.country.name.toLowerCase()]?
           <div className="country-info">
           <h2>{this.props.country.name} Profile</h2>

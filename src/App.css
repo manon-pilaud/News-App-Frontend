@@ -35,6 +35,12 @@
   width:1000px;
 }
 
+.flag-and-header{
+  position:absolute;
+  left: 50%;
+  top:5%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
