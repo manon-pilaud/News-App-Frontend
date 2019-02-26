@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import {fetchingArticles} from '../redux/actionCreator'
@@ -7,18 +7,19 @@ import ArticleList from './ArticleList'
 import WorldFacts from '../factbook.json'
 
 
-class Country extends Component {
-  componentWillReceiveProps(nextProps) {
-    this.props.fetchingArticles(nextProps.country)
-    this.props.fetchingLocalArticles(nextProps.country)
-  }
+
+class Country extends PureComponent {
   render() {
+    if(this.props.country){
+      this.props.fetchingArticles(this.props.country)
+      this.props.fetchingLocalArticles(this.props.country)
+    }
     return !this.props.country?null:(
         <div>
           <div className="flag-and-header">
           <center><h1>{this.props.country.name}</h1></center>
           <center><button>Follow {this.props.country.name}</button></center>
-          <center><img src={`https://www.countryflags.io/${this.props.country.flag}/flat/64.png`}/></center>
+          <center><img src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`}/></center>
           </div>
           {WorldFacts.countries[this.props.country.name.toLowerCase()]?
           <div className="country-info">
