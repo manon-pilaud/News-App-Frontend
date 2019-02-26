@@ -1,6 +1,7 @@
-const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
+// const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
 
-
+// Testing
+const NewsKey = "snfdajkndjscdjbcbhjbv"
 function fetchedArticles(articles){
   return {type:"FETCHED_ARTICLES", articles}
 }
