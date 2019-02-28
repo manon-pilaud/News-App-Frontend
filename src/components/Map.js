@@ -39,7 +39,7 @@ class WorldMap extends React.Component{
           containerStyle={{ width: '100vw', height: '100vh'}}
           onClick={this.onClickMap}
           container={'map'}
-          style={'mapbox://styles/mandyyp/cjsdtzumk1jih1gr1th20nafp'}
+          style={'mapbox://styles/mandyyp/cjsnp8ymx661o1fpl9r9l7puq'}
           center={[11.883267, 41.865919]}
           zoom={[1.15]}
           >
