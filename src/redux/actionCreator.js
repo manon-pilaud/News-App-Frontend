@@ -2,7 +2,25 @@ const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
 
 // Testing
 // const NewsKey = "snfdajkndjscdjbcbhjbv"
+
+function currentUser(){
+  console.log("in current user")
+    return (dispatch) => {
+        fetch("http://localhost:3000/api/v1/profile", {
+                method: "GET",
+                headers: {
+                    "Authentication": `Bearer ${localStorage.token}`
+                }
+            })
+            .then(res => res.json())
+            .then(userInfo => {
+                dispatch(loggedIn(userInfo))
+            })
+    }
+}
+
 function loggingInUser(userInfo){
+
     return (dispatch) => {
         fetch("http://localhost:3000/api/v1/login", {
             method: "POST",
@@ -102,4 +120,4 @@ function fetchingCountries(){
 
 
 
-export{loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}
+export{currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}

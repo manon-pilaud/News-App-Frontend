@@ -64,7 +64,7 @@ class WorldMap extends React.Component{
           </GeoJSONLayer>
           <Layer type="circle" id="marker" paint={{
              'circle-color': "white",
-             'circle-stroke-width': 2.5,
+             'circle-stroke-width': 4,
              'circle-stroke-color': 'white',
              'circle-stroke-opacity': 1
           }}>
