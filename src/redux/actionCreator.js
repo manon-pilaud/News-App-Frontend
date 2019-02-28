@@ -4,7 +4,6 @@ const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
 // const NewsKey = "snfdajkndjscdjbcbhjbv"
 
 function currentUser(){
-  console.log("in current user")
     return (dispatch) => {
         fetch("http://localhost:3000/api/v1/profile", {
                 method: "GET",
@@ -34,7 +33,7 @@ function loggingInUser(userInfo){
               if(data.error){
                 alert('Incorrect username or password')
               } else {
-                dispatch(loggedIn(data.user))
+                dispatch(loggedIn(data.userInfo))
                 localStorage.setItem("token", data.token)
               }
           })

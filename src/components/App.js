@@ -8,24 +8,32 @@ import {connect} from 'react-redux'
 import {fetchingCountries,currentUser} from '../redux/actionCreator'
 import Navbar from './Navbar'
 import Login from './Login'
+import Profile from './Profile'
+import UserCountries from './MyCountries'
+import ReadingList from './ReadingList'
+import SignUp from './SignUp'
 
 class App extends Component {
    componentDidMount(){
-      this.props.currentUser()
+     if(localStorage.token){
+       this.props.currentUser()
+      }
       this.props.fetchingCountries()
    }
 
   render() {
+    console.log(this.props.currentUser)
     return (
       <div>
         <Navbar/>
         <Switch>
-          <Route
-             path="/country/:id"
-             component={Country}
-           />
+          <Route path="/country/:id" component={Country}/>
           <Route exact path="/map" component={WorldMap} />
           <Route exact path='/login' component={Login}/>
+          <Route exact path='/feed' component={Profile}/>
+          <Route exact path='/my-countries' component={UserCountries}/>
+          <Route exact path='/reading-list' component={ReadingList}/>
+          <Route exact path='/signup' component={SignUp}/>
         </Switch>
       </div>
     );
