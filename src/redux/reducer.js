@@ -1,5 +1,16 @@
 import {combineReducers} from 'redux'
 
+const userReducer = (oldState="", action) => {
+  switch(action.type){
+    case "LOGGED_IN":
+      return action.payload
+    case "LOGGED_OUT":
+      return ""
+    default:
+      return oldState
+  }
+}
+
 const articlesReducer=(oldState=[],action)=>{
   switch(action.type){
     case "FETCHED_ARTICLES":
@@ -30,7 +41,8 @@ const countriesReducer=(oldState=[],action)=>{
 const rootReducer =combineReducers({
   articles: articlesReducer,
   localArticles: localArticlesReducer,
-  countries: countriesReducer
+  countries: countriesReducer,
+  currentUser: userReducer
 })
 
 export default rootReducer

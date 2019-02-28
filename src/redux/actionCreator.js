@@ -2,6 +2,35 @@ const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
 
 // Testing
 // const NewsKey = "snfdajkndjscdjbcbhjbv"
+function loggingInUser(userInfo){
+    return (dispatch) => {
+        fetch("http://localhost:3000/api/v1/login", {
+            method: "POST",
+	        headers: {
+                "Content-Type":"application/json",
+                "Accept":"application/json"},
+	        body: JSON.stringify(userInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+              if(data.error){
+                alert('Incorrect username or password')
+              } else {
+                dispatch(loggedIn(data.user))
+                localStorage.setItem("token", data.token)
+              }
+          })
+        }
+}
+
+function loggedIn(userInfo){
+    return {type: "LOGGED_IN", payload: userInfo}
+}
+
+function loggingOut(){
+    return {type: "LOGGED_OUT"}
+}
+
 function fetchedArticles(articles){
   return {type:"FETCHED_ARTICLES", articles}
 }
@@ -63,7 +92,7 @@ function fetchedCountries(countries){
 
 function fetchingCountries(){
   return(dispatch)=>{
-    fetch(`http://localhost:3000/countries`)
+    fetch(`http://localhost:3000/api/v1/countries`)
     .then(res=>res.json())
     .then(countries=> {
       dispatch(fetchedCountries(countries))
@@ -71,4 +100,6 @@ function fetchingCountries(){
   }
 }
 
-export{fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}
+
+
+export{loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}

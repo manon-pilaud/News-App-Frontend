@@ -19,10 +19,11 @@ export default class Navbar extends React.Component{
     </div>
     <input type="checkbox" id="nav-check"/>
     <div className="nav-links">
-      <Link to="/">Home</Link>
+      <Link to="/feed">Home</Link>
       <Link to="/map">Map</Link>
       <Link to="/map">Reading List</Link>
       <Link to="/country/4">My Countries</Link>
+      <Link to="/login">Sign Out</Link>
     </div>
   </div>
     </div>
