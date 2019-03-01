@@ -12,7 +12,6 @@ class MyCountries extends React.Component{
     })
   }
   render(){
-    console.log(this.props.countries)
     return(
     <div>
       {!this.state.showAll?
