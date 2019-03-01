@@ -1,7 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Button, Card, Image } from 'semantic-ui-react'
-export default class CountryCard extends React.Component{
+class CountryCard extends React.Component{
+
+  unfollowCountry=()=>{
+    let targetCountry = this.props.followedCountries.find(followedCountry=>followedCountry.country_id === this.props.country.id)
+    fetch(`http://localhost:3000/api/v1/user_countries/${targetCountry.id}`,{
+     method: "DELETE"})
+    .then(response=>response.json())
+    .then(data=>console.log(data))
+    //setState not working need to reflect on front end
+  }
+
   render(){
     return(
       <div>
@@ -17,7 +27,7 @@ export default class CountryCard extends React.Component{
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button basic color='red'>
+          <Button basic color='red' onClick={this.unfollowCountry}>
             unfollow
           </Button>
         </div>
@@ -28,3 +38,11 @@ export default class CountryCard extends React.Component{
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return{
+    followedCountries: state.currentUser.user_countries
+  }
+}
+
+export default (connect(mapStateToProps)(CountryCard));

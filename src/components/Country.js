@@ -6,8 +6,6 @@ import{fetchingLocalArticles} from '../redux/actionCreator'
 import ArticleList from './ArticleList'
 import WorldFacts from '../factbook.json'
 
-
-
 class Country extends PureComponent {
   state={
     followed: false
@@ -27,7 +25,17 @@ class Country extends PureComponent {
  })
  .then(response=>response.json())
  .then(data=>console.log(data))
+ //setState not working
 }
+
+  unfollowCountry=()=>{
+    let user_country = this.props.user.user_countries.find(userCountry=>userCountry.country_id === this.props.country.id)
+  fetch(`http://localhost:3000/api/v1/user_countries/${user_country.id}`,{
+   method: "DELETE"})
+  .then(response=>response.json())
+  .then(data=>console.log(data))
+  //setState not working need to reflect on front end
+  }
 
 
   render() {
@@ -37,13 +45,16 @@ class Country extends PureComponent {
       let user_follows_country = this.props.user.countries.find(userCountry=>userCountry.name === this.props.country.name)
       this.setState({
         followed: !!user_follows_country
+        //Bad prractice
       })
     }
     return !this.props.country?null:(
         <div>
           <div className="flag-and-header">
           <center><h1>{this.props.country.name}</h1></center>
-          <center><button onClick={this.followCountry}>Follow {this.props.country.name}</button></center>
+          {!this.state.followed?
+          <center><button onClick={this.followCountry}>Follow {this.props.country.name}</button></center>:
+          <center><button onClick={this.unfollowCountry}>unfollow {this.props.country.name}</button></center>}
           <center><img src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`}/></center>
           </div>
           {WorldFacts.countries[this.props.country.name.toLowerCase()]?
