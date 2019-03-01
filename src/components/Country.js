@@ -7,9 +7,6 @@ import ArticleList from './ArticleList'
 import WorldFacts from '../factbook.json'
 
 class Country extends PureComponent {
-  state={
-    followed: false
-  }
   followCountry=()=>{
   fetch('http://localhost:3000/api/v1/user_countries',{
    method: "POST",
@@ -42,17 +39,12 @@ class Country extends PureComponent {
     if(this.props.country){
       this.props.fetchingArticles(this.props.country)
       this.props.fetchingLocalArticles(this.props.country)
-      let user_follows_country = this.props.user.countries.find(userCountry=>userCountry.name === this.props.country.name)
-      this.setState({
-        followed: !!user_follows_country
-        //Bad prractice
-      })
     }
     return !this.props.country?null:(
         <div>
           <div className="flag-and-header">
           <center><h1>{this.props.country.name}</h1></center>
-          {!this.state.followed?
+          {!!!this.props.user.countries.find(userCountry=>userCountry.name === this.props.country.name)?
           <center><button onClick={this.followCountry}>Follow {this.props.country.name}</button></center>:
           <center><button onClick={this.unfollowCountry}>unfollow {this.props.country.name}</button></center>}
           <center><img src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`}/></center>
