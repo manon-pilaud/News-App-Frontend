@@ -9,16 +9,41 @@ import WorldFacts from '../factbook.json'
 
 
 class Country extends PureComponent {
+  state={
+    followed: false
+  }
+  followCountry=()=>{
+  fetch('http://localhost:3000/api/v1/user_countries',{
+   method: "POST",
+   headers:{
+     "Authentication": `Bearer ${localStorage.token}`,
+     "Content-Type" : "application/json",
+     "Accept" : "application/json"
+   },
+   body: JSON.stringify({
+      user_id: this.props.user.user_id,
+      country_id: this.props.country.id
+   })
+ })
+ .then(response=>response.json())
+ .then(data=>console.log(data))
+}
+
+
   render() {
     if(this.props.country){
       this.props.fetchingArticles(this.props.country)
       this.props.fetchingLocalArticles(this.props.country)
+      let user_follows_country = this.props.user.countries.find(userCountry=>userCountry.name === this.props.country.name)
+      this.setState({
+        followed: !!user_follows_country
+      })
     }
     return !this.props.country?null:(
         <div>
           <div className="flag-and-header">
           <center><h1>{this.props.country.name}</h1></center>
-          <center><button>Follow {this.props.country.name}</button></center>
+          <center><button onClick={this.followCountry}>Follow {this.props.country.name}</button></center>
           <center><img src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`}/></center>
           </div>
           {WorldFacts.countries[this.props.country.name.toLowerCase()]?
@@ -72,7 +97,8 @@ const mapStateToProps = (state, ownProps) => {
     let countryId = parseInt(ownProps.match.params.id)
   return{
     country: state.countries.find(country=>
-      country.id === countryId)
+      country.id === countryId),
+      user: state.currentUser
   }
 }
 
