@@ -15,7 +15,6 @@ class SignUp extends PureComponent {
           username: this.state.username,
           password: this.state.password,
       }
-    console.log(userInfo)
   }
 
 
