@@ -1,5 +1,23 @@
 import {combineReducers} from 'redux'
 
+const bbcReducer=(oldState=[],action)=>{
+  switch(action.type){
+    case "FETCHED_BBC":
+      return action.content
+    default:
+      return oldState
+  }
+}
+
+const cnnReducer=(oldState=[],action)=>{
+  switch(action.type){
+    case "FETCHED_CNN":
+      return action.content
+    default:
+      return oldState
+  }
+}
+
 const userReducer = (oldState="", action) => {
   switch(action.type){
     case "LOGGED_IN":
@@ -42,7 +60,9 @@ const rootReducer =combineReducers({
   articles: articlesReducer,
   localArticles: localArticlesReducer,
   countries: countriesReducer,
-  currentUser: userReducer
+  currentUser: userReducer,
+  cnnNews: cnnReducer,
+  bccNews: bbcReducer
 })
 
 export default rootReducer

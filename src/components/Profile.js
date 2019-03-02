@@ -1,26 +1,40 @@
 import React from 'react'
-let feedBBC = "http://feeds.bbci.co.uk/news/world/rss.xml"
-let feedCNN ="http://rss.cnn.com/rss/edition_world.rss"
-let feedReuters ="http://feeds.reuters.com/Reuters/worldNews"
-
-
+import {connect} from 'react-redux'
+import {fetchingBBC,fetchingCNN} from '../redux/actionCreator'
 let Parser = require('rss-parser');
-
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
-let parser = new Parser();
 
-const bbcArr = (async () => {
-  let feed = await parser.parseURL(CORS_PROXY + "http://feeds.bbci.co.uk/news/world/rss.xml" );
-  let bbcArray = []
-  feed.items.forEach(item => {
-    bbcArray.push(item)
-  });
-  return bbcArray
-})();
+class Profile extends React.Component{
+  constructor(){
+    super()
+    this.state={
+      bccNewsFeed: ""
+    }
+  }
+    getBBCnews=()=>{
+      let parser = new Parser();
+      const bbcPromise = (async () => {
+        let feed = await parser.parseURL(CORS_PROXY + "http://feeds.bbci.co.uk/news/world/rss.xml" );
+        let bbcArray = []
+        feed.items.forEach(item => {
+          bbcArray.push(item)
+        });
+        return bbcArray
+      })();
+      bbcPromise.then(info=> {
+        this.setState({
+          bbcNewsFeed: info
+        })
+      })
+    }
 
-bbcArr.then(data=>console.log(data))
+  componentDidMount(){
+      this.props.fetchingBBC()
+      //Figure out why this is not working with redux
+      this.props.fetchingCNN()
+      this.getBBCnews()
+  }
 
-export default class Profile extends React.Component{
   render(){
     return(
       <div>
@@ -28,3 +42,20 @@ export default class Profile extends React.Component{
     )
   }
 }
+
+const mapStateToProps=state=>{
+  return{
+    bbcFeed: state.bbcNews,
+    cnnNews: state.cnnNews
+  }
+}
+
+
+const mapDispatchToProps = dispatch =>{
+  return{
+    fetchingBBC: ()=>{dispatch(fetchingBBC())},
+    fetchingCNN: ()=>{dispatch(fetchingCNN())}
+  }
+}
+
+export default (connect(mapStateToProps, mapDispatchToProps)(Profile))

@@ -117,6 +117,55 @@ function fetchingCountries(){
   }
 }
 
+let Parser = require('rss-parser');
+
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
+
+function fetchingBBC(){
+  return(dispatch)=>{
+    let parser = new Parser();
+
+    const bbcPromise = (async () => {
+      let feed = await parser.parseURL(CORS_PROXY + "http://feeds.bbci.co.uk/news/world/rss.xml" );
+      let bbcArray = []
+      feed.items.forEach(item => {
+        bbcArray.push(item)
+      });
+      return bbcArray
+    })();
+    bbcPromise.then(info=> {
+      dispatch(fetchedBBC(info))
+    })
+  }
+}
+
+function fetchedBBC(content){
+  return {type:"FETCHED_BBC", content}
+}
+
+function fetchingCNN(){
+  return(dispatch)=>{
+    let parserTwo = new Parser();
+
+    const cnnPromise = (async () => {
+      let feed = await parserTwo.parseURL(CORS_PROXY + "http://rss.cnn.com/rss/edition_world.rss");
+      let cnnArray = []
+      feed.items.forEach(item => {
+        cnnArray.push(item)
+      });
+      return cnnArray
+    })();
+    cnnPromise.then(info=> {
+      dispatch(fetchedCNN(info))
+    })
+  }
+}
+
+function fetchedCNN(content){
+  return {type:"FETCHED_CNN", content}
+}
 
 
-export{currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}
+
+
+export{fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}
