@@ -1,5 +1,9 @@
 import React from 'react'
 export default class ArticleCard extends React.Component{
+
+  addToReadingList=(articleInfo)=>{
+    console.log("attemping to add with:",articleInfo)
+  }
   render(props){
     let {title,content,source,url,urlToImage} = this.props.articleInfo
     return(
@@ -10,11 +14,11 @@ export default class ArticleCard extends React.Component{
         </center>
         <img className="crop" alt={title} src={urlToImage}/>
       </a>
-      {content && !content.includes("..") && !content.includes(",,") && !content.includes("%") && !content.includes("()")? 
+      {content && !content.includes("..") && !content.includes(",,") && !content.includes("%") && !content.includes("()")?
         <p>{content}</p>
         :null}
         <p>Source: {source.name}</p>
-        <button>Add to reading List</button>
+        <button onClick={()=>this.addToReadingList(this.props.articleInfo)}>Add to reading List</button>
       </div>
     )
   }
