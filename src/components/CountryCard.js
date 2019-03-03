@@ -26,13 +26,12 @@ class CountryCard extends React.Component{
  })
  .then(response=>response.json())
  .then(data=>console.log(data))
- //setState not working
   }
 
   render(){
     let followed = this.props.user.countries.includes(this.props.country)
     let followed_two = !!this.props.country.users && !!this.props.country.users.find(user=>user.id === this.props.user.user_id)
-    return(
+    return this.props.country.name === "World News"?null:(
       <div>
       <Card.Group>
       <Card>

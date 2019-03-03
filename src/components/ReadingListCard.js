@@ -1,7 +1,17 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import { Button, Card, Image } from 'semantic-ui-react'
 
 class ReadingListCard extends React.Component{
+  removeFromList=(article)=>{
+    let target = this.props.readingList.find(articleFromList=> articleFromList.article_id === article.id)
+    fetch(`http://localhost:3000/api/v1/reading_lists/${target.id}`,{
+     method: "DELETE"})
+    .then(response=>response.json())
+    .then(data=>console.log(data))
+
+  }
+
   render(){
     return(
       <div>
@@ -16,7 +26,7 @@ class ReadingListCard extends React.Component{
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-          <Button basic color='red'>
+          <Button basic color='red' onClick={()=>this.removeFromList(this.props.articleInfo)}>
             Remove from reading list
           </Button>
       </Card.Content>
@@ -28,7 +38,10 @@ class ReadingListCard extends React.Component{
   }
 }
 
+const mapStateToProps=state=>{
+  return{
+    readingList: state.currentUser.reading_lists
+  }
+}
 
-
-
-export default (ReadingListCard)
+export default (connect(mapStateToProps)(ReadingListCard))

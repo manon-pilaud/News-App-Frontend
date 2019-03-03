@@ -63,7 +63,9 @@ class ArticleCard extends React.Component{
         <p>{content}</p>
         :null}
         <p>Source: {source.name}</p>
+        {localStorage.token?
         <button onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}>Add to reading List</button>
+        :null}
       </div>
     )
   }

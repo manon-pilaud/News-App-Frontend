@@ -28,13 +28,6 @@ class App extends Component {
       <div>
         <Navbar/>
         <Switch>
-          <Route exact path="/country/:id" render={() => (
-            !localStorage.token ? (
-              <Redirect to="/signup"/>
-            ) : (
-              <Country/>
-            )
-          )}/>
           <Route exact path="/map" component={WorldMap} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/feed' component={Profile}/>
@@ -53,6 +46,7 @@ class App extends Component {
             )
           )}/>
         <Route exact path='/signup' component={SignUp}/>
+        <Route exact path="/country/:id" component={Country}/>
         </Switch>
       </div>
     );

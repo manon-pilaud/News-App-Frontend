@@ -54,7 +54,9 @@ class NewsCard extends React.Component{
         <h5>{this.props.newsInfo.title}</h5>
         <p>{this.props.newsInfo.contentSnippet}</p>
         </a>
+        {localStorage.token?
         <button onClick={()=>this.createArticle(this.props.newsInfo)}>add to reading list</button>
+        :null}
       </div>
     )
   }
