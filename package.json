@@ -16,7 +16,8 @@
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "rss-parser": "^3.6.3"
+    "rss-parser": "^3.6.3",
+    "semantic-ui-react": "^0.85.0"
   },
   "scripts": {
     "start": "react-scripts start",

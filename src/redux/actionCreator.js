@@ -3,6 +3,10 @@ const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
 // Testing
 // const NewsKey = "snfdajkndjscdjbcbhjbv"
 
+function setCountry(country){
+  return{type:"SET_COUNTRY", country}
+}
+
 function currentUser(){
     return (dispatch) => {
         fetch("http://localhost:3000/api/v1/profile", {
@@ -168,4 +172,4 @@ function fetchedCNN(content){
 
 
 
-export{fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}
+export{setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}

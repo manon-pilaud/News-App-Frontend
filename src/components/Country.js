@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import {fetchingArticles} from '../redux/actionCreator'
-import{fetchingLocalArticles} from '../redux/actionCreator'
+import{fetchingLocalArticles,setCountry} from '../redux/actionCreator'
 import ArticleList from './ArticleList'
 import WorldFacts from '../factbook.json'
 
@@ -39,6 +39,7 @@ class Country extends PureComponent {
     if(this.props.country){
       this.props.fetchingArticles(this.props.country)
       this.props.fetchingLocalArticles(this.props.country)
+      this.props.setCountry(this.props.country)
     }
     return !this.props.country?null:(
         <div>
@@ -108,7 +109,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps=dispatch=>{
   return{
     fetchingArticles:(country)=>{dispatch(fetchingArticles(country))},
-    fetchingLocalArticles:(country)=>{dispatch(fetchingLocalArticles(country))}
+    fetchingLocalArticles:(country)=>{dispatch(fetchingLocalArticles(country))},
+    setCountry:(country)=>{dispatch(setCountry(country))}
   }
 }
 
