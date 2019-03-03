@@ -169,7 +169,21 @@ function fetchedCNN(content){
   return {type:"FETCHED_CNN", content}
 }
 
+function fetchingSavedArticles(){
+  return (dispatch) => {
+    fetch(`http://localhost:3000/api/v1/articles`)
+    .then(res=>res.json())
+    .then(articles=> {
+      dispatch(fetchedSavedArticles(articles))
+    })
+  }
+}
+
+function fetchedSavedArticles(articles){
+  return {type:"FETCHED_SAVED_ARTICLES",articles}
+}
 
 
 
-export{setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}
+
+export{fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}

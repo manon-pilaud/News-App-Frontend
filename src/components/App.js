@@ -5,7 +5,7 @@ import WorldMap from './Map'
 import Country from './Country'
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
-import {fetchingCountries,currentUser} from '../redux/actionCreator'
+import {fetchingCountries,currentUser,fetchingSavedArticles} from '../redux/actionCreator'
 import Navbar from './Navbar'
 import Login from './Login'
 import Profile from './Profile'
@@ -19,6 +19,7 @@ class App extends Component {
        this.props.currentUser()
       }
       this.props.fetchingCountries()
+      this.props.fetchingSavedArticles()
    }
 
   render() {
@@ -42,7 +43,8 @@ class App extends Component {
 const mapDispatchToProps = dispatch =>{
   return{
     fetchingCountries: ()=>{dispatch(fetchingCountries())},
-    currentUser: ()=>{dispatch(currentUser())}
+    currentUser: ()=>{dispatch(currentUser())},
+    fetchingSavedArticles: ()=>{dispatch(fetchingSavedArticles())}
   }
 }
 

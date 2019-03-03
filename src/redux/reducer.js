@@ -1,5 +1,13 @@
 import {combineReducers} from 'redux'
 
+const savedArticlesReducer=(oldState=[],action)=>{
+  switch(action.type){
+    case "FETCHED_SAVED_ARTICLES":
+      return action.articles
+    default:
+      return oldState
+  }
+}
 const countryReducer=(oldState="",action)=>{
   switch(action.type){
     case "SET_COUNTRY":
@@ -72,7 +80,8 @@ const rootReducer =combineReducers({
   currentUser: userReducer,
   cnnNews: cnnReducer,
   bccNews: bbcReducer,
-  currentCountry: countryReducer
+  currentCountry: countryReducer,
+  savedArticles: savedArticlesReducer
 })
 
 export default rootReducer
