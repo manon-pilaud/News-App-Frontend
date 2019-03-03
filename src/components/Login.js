@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { withRouter } from "react-router";
 import { Button, Form, Segment, Message } from "semantic-ui-react";
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import { loggingInUser,loggingOut } from '../redux/actionCreator'
 class LoginForm extends PureComponent {
   state = {
@@ -58,6 +59,7 @@ class LoginForm extends PureComponent {
           </Form.Group>
           <Button type="submit">Login</Button>
         </Form>
+        <Link to="/signup">Not a user? Sign up!</Link>
       </Segment>:<button onClick={()=>{this.handleLoginSubmit()}}>Sign Out</button>}
       </div>
     );

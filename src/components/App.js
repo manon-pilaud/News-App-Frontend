@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Switch } from "react-router";
+import {Route, Switch ,Redirect} from "react-router";
 import '../App.css';
 import WorldMap from './Map'
 import Country from './Country'
@@ -12,6 +12,7 @@ import Profile from './Profile'
 import UserCountries from './MyCountries'
 import ReadingList from './ReadingList'
 import SignUp from './SignUp'
+
 
 class App extends Component {
    componentDidMount(){
@@ -27,13 +28,31 @@ class App extends Component {
       <div>
         <Navbar/>
         <Switch>
-          <Route path="/country/:id" component={Country}/>
+          <Route exact path="/country/:id" render={() => (
+            !localStorage.token ? (
+              <Redirect to="/signup"/>
+            ) : (
+              <Country/>
+            )
+          )}/>
           <Route exact path="/map" component={WorldMap} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/feed' component={Profile}/>
-          <Route exact path='/my-countries' component={UserCountries}/>
-          <Route exact path='/reading-list' component={ReadingList}/>
-          <Route exact path='/signup' component={SignUp}/>
+            <Route exact path="/my-countries" render={() => (
+              !localStorage.token ? (
+                <Redirect to="/signup"/>
+              ) : (
+                <UserCountries/>
+              )
+          )}/>
+          <Route exact path="/reading-list" render={() => (
+            !localStorage.token ? (
+              <Redirect to="/signup"/>
+            ) : (
+              <ReadingList/>
+            )
+          )}/>
+        <Route exact path='/signup' component={SignUp}/>
         </Switch>
       </div>
     );

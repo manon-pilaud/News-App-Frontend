@@ -1,10 +1,20 @@
 import React from 'react'
-export default class ReadingList extends React.Component{
+import {connect} from 'react-redux'
+import ReadingListCard from './ReadingListCard'
+class ReadingList extends React.Component{
   render(){
-    return(
+    return !this.props.readingList?null:(
       <div>
-        Reading List
+        {this.props.readingList.map(article=><ReadingListCard key={article.id} articleInfo={article}/>)}
       </div>
     )
   }
 }
+
+const mapStateToProps=state=>{
+  return{
+    readingList: state.currentUser.articles
+  }
+}
+
+export default (connect(mapStateToProps)(ReadingList))
