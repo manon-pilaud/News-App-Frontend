@@ -1,11 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Card} from 'semantic-ui-react'
 import ReadingListCard from './ReadingListCard'
 class ReadingList extends React.Component{
   render(){
     return !this.props.readingList?null:(
       <div>
+        <Card.Group itemsPerRow={4}>
         {this.props.readingList.map(article=><ReadingListCard key={article.id} articleInfo={article}/>)}
+      </Card.Group>
       </div>
     )
   }

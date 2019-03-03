@@ -12,6 +12,7 @@ class CountryCard extends React.Component{
   }
 
   followCountry=()=>{
+  this.props.followThisCountry(this.props.country)
   fetch('http://localhost:3000/api/v1/user_countries',{
    method: "POST",
    headers:{
@@ -25,7 +26,7 @@ class CountryCard extends React.Component{
    })
  })
  .then(response=>response.json())
- .then(data=>console.log(data))
+ // .then(data=>this.props.followThisCountry(data))
   }
 
   render(){
@@ -33,8 +34,8 @@ class CountryCard extends React.Component{
     let followed_two = !!this.props.country.users && !!this.props.country.users.find(user=>user.id === this.props.user.user_id)
     return this.props.country.name === "World News"?null:(
       <div>
-      <Card.Group>
-      <Card>
+
+      <Card className="country-card">
       <Card.Content>
         <Image floated='right' size='mini' src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`} />
         <Card.Header>{this.props.country.name}</Card.Header>
@@ -57,7 +58,6 @@ class CountryCard extends React.Component{
         </div>
       </Card.Content>
     </Card>
-    </Card.Group>
       </div>
     )
   }
@@ -70,4 +70,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default (connect(mapStateToProps)(CountryCard));
+const mapDispatchToProps=dispatch=>{
+  return{
+    followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})}
+  }
+}
+
+export default (connect(mapStateToProps,mapDispatchToProps)(CountryCard));

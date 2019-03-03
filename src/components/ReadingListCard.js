@@ -16,8 +16,7 @@ class ReadingListCard extends React.Component{
     return(
       <div>
       <a>
-      <Card.Group>
-      <Card>
+      <Card className="reading-list-card">
       <Card.Content>
         <Card.Header>{this.props.articleInfo.title}</Card.Header>
         <Image floated='left' size='large'  src={this.props.articleInfo.image_url}/>
@@ -31,7 +30,6 @@ class ReadingListCard extends React.Component{
           </Button>
       </Card.Content>
     </Card>
-    </Card.Group>
     </a>
       </div>
     )

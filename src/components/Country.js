@@ -8,6 +8,7 @@ import WorldFacts from '../factbook.json'
 
 class Country extends PureComponent {
   followCountry=()=>{
+  this.props.followThisCountry(this.props.country)
   fetch('http://localhost:3000/api/v1/user_countries',{
    method: "POST",
    headers:{
@@ -114,7 +115,8 @@ const mapDispatchToProps=dispatch=>{
   return{
     fetchingArticles:(country)=>{dispatch(fetchingArticles(country))},
     fetchingLocalArticles:(country)=>{dispatch(fetchingLocalArticles(country))},
-    setCountry:(country)=>{dispatch(setCountry(country))}
+    setCountry:(country)=>{dispatch(setCountry(country))},
+    followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})}
   }
 }
 

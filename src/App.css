@@ -4,6 +4,20 @@
 .body{
   position: relative;
 }
+
+.country-card{
+  margin: 13px !important;
+}
+
+
+.reading-list-card{
+  margin-top: 20px !important;
+  margin-right: 10px !important;
+  text-align: center;
+  height: 380px;
+  width:200px;
+}
+
 .crop {
  height: 200px;
  width: 300px;
@@ -34,6 +48,7 @@
   top:29%;
   width:1000px;
 }
+
 
 
 @keyframes App-logo-spin {
