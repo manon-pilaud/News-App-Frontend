@@ -41,11 +41,20 @@ const userReducer = (oldState="", action) => {
       return action.payload
     case "LOGGED_OUT":
       return ""
+    case"UPDATE_USER_COUNTRIES":
+    return {
+      ...oldState,
+      user_countries: [...oldState.user_countries, action.data]
+    }
     case "FOLLOW_COUNTRY":
         return {
           ...oldState,
           countries: [...oldState.countries, action.country]
         }
+    case "UNFOLLOW_COUNTRY":
+      let index = oldState.countries.findIndex(country=>country === action.country)
+      console.log(index,"Stuck here getting index but deleting everthing except what I want")
+      //Im stuck
     default:
       return oldState
   }
@@ -73,17 +82,6 @@ const countriesReducer=(oldState=[],action)=>{
   switch(action.type){
     case "FETCHED_COUNTRIES":
       return action.countries
-      // case "FOLLOW_COUNTRY":
-      //  return oldState.map(c => {
-      //    if(c.id === action.country.country_id){
-      //      return {
-      //        ...c,
-      //        user_countries: c.user_countries.push(action.country)
-      //      }
-      //    }
-      //    //Why is this not working
-      //    return c
-      //  })
     default:
       return oldState
   }

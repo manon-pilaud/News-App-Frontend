@@ -8,7 +8,7 @@ import WorldFacts from '../factbook.json'
 
 class Country extends PureComponent {
   followCountry=()=>{
-  this.props.followThisCountry(this.props.country)
+
   fetch('http://localhost:3000/api/v1/user_countries',{
    method: "POST",
    headers:{
@@ -22,17 +22,17 @@ class Country extends PureComponent {
    })
  })
  .then(response=>response.json())
- .then(data=>console.log(data))
- //setState not working
+ .then(data=>this.props.updateUserCountries(data))
+ .then(data=>this.props.followThisCountry(this.props.country,data))
 }
 
   unfollowCountry=()=>{
-    let user_country = this.props.user.user_countries.find(userCountry=>userCountry.country_id === this.props.country.id)
+  let user_country = this.props.user.user_countries.find(userCountry=>userCountry.country_id === this.props.country.id)
   fetch(`http://localhost:3000/api/v1/user_countries/${user_country.id}`,{
    method: "DELETE"})
   .then(response=>response.json())
-  .then(data=>console.log(data))
-  //setState not working need to reflect on front end
+  this.props.unfollowThisCountry(this.props.country)
+  //WHY DO I GET AN ERROR SOMETIMES WHEN I IMMEDIATELY UNFOLLOW
   }
 
 
@@ -116,7 +116,9 @@ const mapDispatchToProps=dispatch=>{
     fetchingArticles:(country)=>{dispatch(fetchingArticles(country))},
     fetchingLocalArticles:(country)=>{dispatch(fetchingLocalArticles(country))},
     setCountry:(country)=>{dispatch(setCountry(country))},
-    followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})}
+    updateUserCountries:(data)=>{dispatch({type:"UPDATE_USER_COUNTRIES",data})},
+    followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})},
+    unfollowThisCountry:(country)=>{dispatch({type:"UNFOLLOW_COUNTRY",country})}
   }
 }
 

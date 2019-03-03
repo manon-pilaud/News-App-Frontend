@@ -8,11 +8,10 @@ class CountryCard extends React.Component{
     fetch(`http://localhost:3000/api/v1/user_countries/${targetCountry.id}`,{
      method: "DELETE"})
     .then(response=>response.json())
-    .then(data=>console.log(data))
+    .then(this.props.unfollowThisCountry(this.props.country))
   }
 
   followCountry=()=>{
-  this.props.followThisCountry(this.props.country)
   fetch('http://localhost:3000/api/v1/user_countries',{
    method: "POST",
    headers:{
@@ -26,7 +25,8 @@ class CountryCard extends React.Component{
    })
  })
  .then(response=>response.json())
- // .then(data=>this.props.followThisCountry(data))
+ .then(data=>this.props.updateUserCountries(data))
+ .then(data=>this.props.followThisCountry(this.props.country))
   }
 
   render(){
@@ -72,7 +72,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps=dispatch=>{
   return{
-    followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})}
+    followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})},
+    updateUserCountries:(data)=>{dispatch({type:"UPDATE_USER_COUNTRIES",data})},
+    unfollowThisCountry:(country)=>{dispatch({type:"UNFOLLOW_COUNTRY",country})}
+
   }
 }
 
