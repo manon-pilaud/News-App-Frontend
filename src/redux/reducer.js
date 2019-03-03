@@ -4,6 +4,12 @@ const savedArticlesReducer=(oldState=[],action)=>{
   switch(action.type){
     case "FETCHED_SAVED_ARTICLES":
       return action.articles
+    // case "UPDATE_SAVED_ARTICLES":
+    // console.log("cant add to saved articles")
+    // return {
+    //   // ...oldState,
+    //   //   savedArticles: [...oldState,action.article]
+    // }
     default:
       return oldState
   }
@@ -55,6 +61,17 @@ const userReducer = (oldState="", action) => {
       let index = oldState.countries.findIndex(country=>country === action.country)
       console.log(index,"Stuck here getting index but deleting everthing except what I want")
       //Im stuck
+      case"UPDATE_READING_LIST":
+      console.log(oldState,"UPDATE")
+      return {
+        ...oldState,
+        reading_lists: [...oldState.reading_lists, action.joinInfo]
+      }
+      case "ADD_TO_READING_LIST":
+          return {
+            ...oldState,
+            articles: [...oldState.articles, action.data]
+          }
     default:
       return oldState
   }

@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 class NewsCard extends React.Component{
   createArticle=(article)=>{
-    console.log(article)
     let articleExists= this.props.savedArticles.find(savedArticle=>savedArticle.title === article.title)
     if (!!articleExists){
       this.addToReadingList(articleExists)
@@ -23,12 +22,13 @@ class NewsCard extends React.Component{
        })
      })
      .then(response=>response.json())
-     .then(data=>this.addToReadingList(data))
+     .then(this.props.updateTheSavedArticles(article))
+     .then(info=>this.addToReadingList(info))
     }
   }
 
   addToReadingList=(data)=>{
-    if(this.props.user.reading_lists.find(article=> article.article_id === data.id)){
+    if( this.props.user.reading_lists && this.props.user.reading_lists.find(article=> article.article_id === data.id)){
       alert("Pshhht you already added this to your reading list")
     }
     else{
@@ -44,7 +44,8 @@ class NewsCard extends React.Component{
         })
       })
       .then(response=>response.json())
-      .then(data=>console.log(data))
+      .then(joinInfo=>this.props.updateArticleReadingList(joinInfo))
+      .then(joinInfo=>this.props.addArticleReadingList(data))
     }
   }
   render(){
@@ -69,5 +70,13 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps=dispatch=>{
+  return{
+    updateTheSavedArticles:(article)=>{dispatch({type:"UPDATE_SAVED_ARTICLES",article})},
+    updateArticleReadingList:(joinInfo)=>{dispatch({type:"UPDATE_READING_LIST",joinInfo})},
+    addArticleReadingList:(data)=>{dispatch({type:"ADD_TO_READING_LIST",data})}
+  }
+}
 
-export default (connect(mapStateToProps)(NewsCard));
+
+export default (connect(mapStateToProps,mapDispatchToProps)(NewsCard));

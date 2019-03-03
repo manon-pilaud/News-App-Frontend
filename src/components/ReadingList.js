@@ -7,7 +7,7 @@ class ReadingList extends React.Component{
     return !this.props.readingList?null:(
       <div>
         <Card.Group itemsPerRow={4}>
-        {this.props.readingList.map(article=><ReadingListCard key={article.id} articleInfo={article}/>)}
+        {this.props.readingList.map((article,index)=><ReadingListCard key={index} articleInfo={article}/>)}
       </Card.Group>
       </div>
     )

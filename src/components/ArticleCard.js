@@ -44,7 +44,8 @@ class ArticleCard extends React.Component{
         })
       })
       .then(response=>response.json())
-      .then(data=>console.log(data))
+      .then(joinInfo=>this.props.updateReadingList(joinInfo))
+      .then(this.props.addToReadingList(data))
     }
   }
 
@@ -79,5 +80,12 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps=dispatch=>{
+  return{
+    updateReadingList:(joinInfo)=>{dispatch({type:"UPDATE_READING_LIST",joinInfo})},
+    addToReadingList:(data)=>{dispatch({type:"ADD_TO_READING_LIST",data})}
+  }
+}
 
-export default (connect(mapStateToProps)(ArticleCard));
+
+export default (connect(mapStateToProps,mapDispatchToProps)(ArticleCard));
