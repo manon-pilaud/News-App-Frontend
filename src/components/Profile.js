@@ -37,6 +37,7 @@ class Profile extends React.Component{
   }
 
   componentWillReceiveProps(nextProps){
+    //Should switch this to not unsafe 
       nextProps.userCountries.map(country=>
         this.props.fetchingUserNews(country)
       )
