@@ -36,12 +36,13 @@ class Profile extends React.Component{
       this.getBBCnews()
   }
 
+  componentWillReceiveProps(nextProps){
+      nextProps.userCountries.map(country=>
+        this.props.fetchingUserNews(country)
+      )
+  }
+
   render(){
-    // if (this.props.userCountries){
-    //   this.props.userCountries.map(country=>
-    //     this.props.fetchingUserNews(country)
-    //   )
-    // }
     return(
       <div>
         {this.state.bbcNewsFeed?

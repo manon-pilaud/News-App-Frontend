@@ -27,7 +27,7 @@ class NewsCard extends React.Component{
   }
 
   addToReadingList=(data)=>{
-    if( this.props.user.reading_lists && this.props.user.reading_lists.find(article=> article.article_id === data.id)){
+    if(this.props.user.articles.find(article=> article.id === data.id)){
       alert("Pshhht you already added this to your reading list")
     }
     else{

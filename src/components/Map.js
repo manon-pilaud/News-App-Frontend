@@ -1,13 +1,13 @@
 import React from 'react'
-import ReactMapboxGl, {GeoJSONLayer,Feature,Layer} from "react-mapbox-gl";
+import ReactMapboxGl, {GeoJSONLayer,Feature,Layer,Marker} from "react-mapbox-gl";
 import {connect} from 'react-redux'
 import Geocoder from 'react-mapbox-gl-geocoder'
 // import {withRouter} from 'react-router-dom';
 // import {Link} from 'react-router-dom'
 
-const MapKey = process.env.REACT_APP_MAP_API_KEY;
+const MAPKEY = process.env.REACT_APP_MAP_API_KEY;
 const Map = ReactMapboxGl({
-  accessToken: MapKey
+  accessToken: MAPKEY
 });
 
 const linePaint: MapboxGL.LinePaint = {
@@ -43,6 +43,9 @@ class WorldMap extends React.Component{
   render(){
     return(
       <div>
+        <Geocoder
+        mapboxApiAccessToken={MAPKEY}
+        />
         {!this.state.mapToggle?
         <Map
           containerStyle={{ width: '100vw', height: '100vh'}}
@@ -62,14 +65,11 @@ class WorldMap extends React.Component{
                 this.onClickMap(e.features, this.props.countries)}}
             >
           </GeoJSONLayer>
-          <Layer type="circle" id="marker" paint={{
-             'circle-color': "white",
-             'circle-stroke-width': 4,
-             'circle-stroke-color': 'white',
-             'circle-stroke-opacity': 1
-          }}>
-            <Feature onClick={this.worldToggled} coordinates={[-2.122169,81.740307]}/>
-        </Layer>
+          <Marker onClick={this.worldToggled}
+              coordinates={[-2.122169,80.99]}
+              anchor="bottom">
+              <img src={"https://png.icons8.com/color/search/35"}/>
+          </Marker>
           </Map>:
           <Map
             containerStyle={{ width: '100vw', height: '100vh'}}
@@ -79,6 +79,7 @@ class WorldMap extends React.Component{
             center={[11.883267, 41.865919]}
             zoom={[1.00]}
             >
+
             <GeoJSONLayer
               data={'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson'}
               id='country-layer'
@@ -89,14 +90,11 @@ class WorldMap extends React.Component{
                   this.onClickMap(e.features, this.props.countries)}}
               >
             </GeoJSONLayer>
-              <Layer type="circle" id="marker" paint={{
-                 'circle-color': "white",
-                 'circle-stroke-width': 2.5,
-                 'circle-stroke-color': 'white',
-                 'circle-stroke-opacity': 1
-              }}>
-                <Feature onClick={this.worldToggled} coordinates={[-2.122169,81.740307]}/>
-            </Layer>
+            <Marker onClick={this.worldToggled}
+                coordinates={[-2.122169,80.99]}
+                anchor="bottom">
+                <img src={"https://png.icons8.com/color/search/35"}/>
+            </Marker>
             </Map>
           }
         </div>

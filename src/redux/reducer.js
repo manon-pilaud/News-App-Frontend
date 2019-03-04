@@ -115,7 +115,7 @@ const countriesReducer=(oldState=[],action)=>{
 const userCountryNewsReducer=(oldState=[],action)=>{
   switch(action.type){
     case "FETCHED_USER_COUNTRY_NEWS":
-      console.log(action.articles.articles)
+      console.log(action.articlesHash)
       //Why is it repeating and how do I add to end
     default:
       return oldState

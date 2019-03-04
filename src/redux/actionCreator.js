@@ -184,26 +184,29 @@ function fetchedSavedArticles(articles){
 }
 
 function fetchingUserNews(country){
+  //Need a functiton that for each getState.countries dispatches this function
   return(dispatch)=>{
     if(country.name === "Jordan"){
       fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
-        dispatch(fetchedArticles(articles))
+        dispatch(fetchedArticles(articles,country))
       })
     }
     else{
       fetch(`https://newsapi.org/v2/everything?q=${country.name}&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
-        dispatch(fetchedUserNews(articles))
+        let articlesHash ={}
+        articlesHash[country.name]= articles.articles
+        dispatch(fetchedUserNews(articlesHash))
       })
     }
   }
 }
 
-function fetchedUserNews(articles){
-  return {type:"FETCHED_USER_COUNTRY_NEWS",articles}
+function fetchedUserNews(articlesHash){
+  return {type:"FETCHED_USER_COUNTRY_NEWS",articlesHash}
 }
 
 function creatingUser(userInfo){
