@@ -8,7 +8,7 @@ class ReadingListCard extends React.Component{
     fetch(`http://localhost:3000/api/v1/reading_lists/${target.id}`,{
      method: "DELETE"})
     .then(response=>response.json())
-    .then(data=>console.log(data))
+    .then(this.props.removeThisFromList(article))
 
   }
 
@@ -42,4 +42,10 @@ const mapStateToProps=state=>{
   }
 }
 
-export default (connect(mapStateToProps)(ReadingListCard))
+const mapDispatchToProps=dispatch=>{
+  return{
+      removeThisFromList:(article)=>{dispatch({type:"REMOVE_FROM_LIST",article})}
+  }
+}
+
+export default (connect(mapStateToProps,mapDispatchToProps)(ReadingListCard))

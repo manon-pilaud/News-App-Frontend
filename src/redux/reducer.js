@@ -72,6 +72,14 @@ const userReducer = (oldState="", action) => {
             ...oldState,
             articles: [...oldState.articles, action.data]
           }
+      case "REMOVE_FROM_LIST":
+        let indexArticle = oldState.articles.findIndex(article=>article === action.article)
+        let copyOfArticles = [...oldState.articles]
+        copyOfArticles.splice(indexArticle,1)
+        return{
+          ...oldState,
+          articles: copyOfArticles
+        }
     default:
       return oldState
   }
