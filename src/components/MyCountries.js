@@ -4,7 +4,8 @@ import {Card} from 'semantic-ui-react'
 import CountryCard from './CountryCard'
 class MyCountries extends React.Component{
   state={
-    showAll: false
+    showAll: false,
+    searchText: ""
   }
 
   showAll=()=>{
@@ -12,9 +13,17 @@ class MyCountries extends React.Component{
       showAll: !this.state.showAll
     })
   }
+
+  searchText=(e)=>{
+    this.setState({
+      searchText: e.target.value
+    })
+  }
+
   render(){
     return(
     <div>
+      <input onChange={(e)=>this.searchText(e)}></input>
       {!this.state.showAll?
       <div>
       <button onClick={this.showAll}>Display all Countries</button>

@@ -5,6 +5,16 @@
   position: relative;
 }
 
+.toggled-div{
+  text-align: center;
+}
+
+.toggled_button{
+  left:50%;
+  top:0.7%;
+  position: absolute;
+}
+
 .country-card{
   margin: 13px !important;
 }
@@ -160,44 +170,3 @@ body {
 }
 
 /*Toggle*/
-/* input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
-}
-
-label {
-	cursor: pointer;
-	text-indent: -9999px;
-	width: 50px;
-	height: 23px;
-	background: grey;
-	display: block;
-	border-radius: 25px;
-	position: relative;
-}
-
-label:after {
-	content: '';
-	position: absolute;
-	top: 1.25px;
-	left: 1.25px;
-	width: 22px;
-	height: 22px;
-	background: #fff;
-	border-radius: 22px;
-	transition: 0.3s;
-}
-
-input:checked + label {
-	background: #bada55;
-}
-
-input:checked + label:after {
-	left: calc(100% - 1.25px);
-	transform: translateX(-100%);
-}
-
-label:active:after {
-	width: 32.5px;
-} */

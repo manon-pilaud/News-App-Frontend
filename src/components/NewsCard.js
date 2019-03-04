@@ -22,7 +22,6 @@ class NewsCard extends React.Component{
        })
      })
      .then(response=>response.json())
-     .then(this.props.updateTheSavedArticles(article))
      .then(info=>this.addToReadingList(info))
     }
   }
@@ -72,7 +71,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps=dispatch=>{
   return{
-    updateTheSavedArticles:(article)=>{dispatch({type:"UPDATE_SAVED_ARTICLES",article})},
     updateArticleReadingList:(joinInfo)=>{dispatch({type:"UPDATE_READING_LIST",joinInfo})},
     addArticleReadingList:(data)=>{dispatch({type:"ADD_TO_READING_LIST",data})}
   }

@@ -4,12 +4,6 @@ const savedArticlesReducer=(oldState=[],action)=>{
   switch(action.type){
     case "FETCHED_SAVED_ARTICLES":
       return action.articles
-    // case "UPDATE_SAVED_ARTICLES":
-    // console.log("cant add to saved articles")
-    // return {
-    //   // ...oldState,
-    //   //   savedArticles: [...oldState,action.article]
-    // }
     default:
       return oldState
   }
@@ -59,7 +53,13 @@ const userReducer = (oldState="", action) => {
         }
     case "UNFOLLOW_COUNTRY":
       let index = oldState.countries.findIndex(country=>country === action.country)
-      console.log(index,"Stuck here getting index but deleting everthing except what I want")
+      let copyOfCountries = [...oldState.countries]
+      copyOfCountries.splice(index,1)
+      return{
+        ...oldState,
+        countries: copyOfCountries
+      }
+
       //Im stuck
       case"UPDATE_READING_LIST":
       console.log(oldState,"UPDATE")
@@ -104,6 +104,16 @@ const countriesReducer=(oldState=[],action)=>{
   }
 }
 
+const userCountryNewsReducer=(oldState=[],action)=>{
+  switch(action.type){
+    case "FETCHED_USER_COUNTRY_NEWS":
+      console.log(action.articles.articles)
+      //Why is it repeating and how do I add to end
+    default:
+      return oldState
+  }
+}
+
 const rootReducer =combineReducers({
   articles: articlesReducer,
   localArticles: localArticlesReducer,
@@ -112,7 +122,8 @@ const rootReducer =combineReducers({
   cnnNews: cnnReducer,
   bccNews: bbcReducer,
   currentCountry: countryReducer,
-  savedArticles: savedArticlesReducer
+  savedArticles: savedArticlesReducer,
+  userCountryNews: userCountryNewsReducer
 })
 
 export default rootReducer

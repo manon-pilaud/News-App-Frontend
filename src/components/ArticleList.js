@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import ArticleCard from './ArticleCard'
+import { Checkbox, Segment } from 'semantic-ui-react'
 
 class ArticleList extends React.Component{
   constructor(){
@@ -26,10 +27,18 @@ class ArticleList extends React.Component{
   render(){
 
   return this.props.articles && this.props.localArticles?(
+
+
+
     <div className="articles-cont">
-      <h3>News</h3>
-      <button onClick={this.clicked}>Hide News</button>
-      <input type="checkbox" id="switch" onChange={this.toggled}/><label htmlFor="switch">Toggle</label>
+      <center><h2>News</h2></center>
+      <div className="toggled-div">
+      <button className="toggled_button" onClick={this.clicked}>Hide News</button>
+        <Segment compact>
+       <Checkbox slider onChange={this.toggled}/>
+     </Segment>
+     </div>
+     {this.state.toggled?<center><h3>Local Sources</h3></center>:<center><h3>All Sources</h3></center>}
       {!this.state.clicked?
       <div className="all-articles">
         {this.state.toggled?
@@ -53,7 +62,7 @@ class ArticleList extends React.Component{
 
       </div>
       :null}
-    </div>
+      </div>
   ):null
   }
 }
