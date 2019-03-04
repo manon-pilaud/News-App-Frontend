@@ -3,7 +3,7 @@ import { creatingUser } from '../redux/actionCreator'
 import { withRouter } from "react-router";
 import { Button, Form, Segment, Message } from "semantic-ui-react";
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 
 
 class SignUp extends PureComponent {
@@ -30,6 +30,9 @@ class SignUp extends PureComponent {
   };
 
   render(){
+    if (this.props.currentUser) {
+      return <Redirect to="/feed" />;
+    }
     return(
       <div>
       <Segment className="login-form">
