@@ -206,7 +206,45 @@ function fetchedUserNews(articles){
   return {type:"FETCHED_USER_COUNTRY_NEWS",articles}
 }
 
+function creatingUser(userInfo){
+  return (dispatch) =>{
+    fetch("http://localhost:3000/api/v1/users",{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                user: {
+                    username: userInfo.username,
+                    password: userInfo.password
+
+                }
+            })
+        }).then(res=>res.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error)
+            }else {
+                setUser(data,dispatch)
+            }
+      })
+  }
+}
+
+function setUser(data,dispatch){
+    if (data.success && data.token) {
+       localStorage.setItem('token', data.token)
+        dispatch({
+            type: "LOGGED_IN",
+            payload: data.userInfo
+        })
+    }else{
+        alert('something went wrong')
+    }
+}
 
 
 
-export{fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles}
+
+export{setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser}

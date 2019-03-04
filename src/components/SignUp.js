@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
+import { creatingUser } from '../redux/actionCreator'
 import { withRouter } from "react-router";
 import { Button, Form, Segment, Message } from "semantic-ui-react";
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import { loggingInUser,loggingOut } from '../redux/actionCreator'
+
+
 class SignUp extends PureComponent {
   state = {
     username: "",
@@ -16,7 +18,11 @@ class SignUp extends PureComponent {
           username: this.state.username,
           password: this.state.password,
       }
+      if(!this.props.currentUser){
+          this.props.creatingUser(userInfo)
+      }
   }
+
 
 
   handleChange = (e, { name, value }) => {
@@ -58,5 +64,18 @@ class SignUp extends PureComponent {
     )
   }
  }
+ const mapStateToProps = (state) => {
+     return{
+         currentUser: state.currentUser
+     }
+ }
 
- export default SignUp
+ const mapDispatchToProps = dispatch => {
+     return {
+         creatingUser: (userInfo) => {dispatch(creatingUser(userInfo))}
+
+     }
+ }
+
+
+ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp))

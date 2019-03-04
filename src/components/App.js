@@ -45,7 +45,14 @@ class App extends Component {
               <ReadingList/>
             )
           )}/>
-        <Route exact path='/signup' component={SignUp}/>
+        <Route exact path="/signup" render={() => (
+            localStorage.token ? (
+              <Redirect to="/feed"/>
+            ) : (
+              <SignUp/>
+            )
+          )}/>
+
         <Route exact path="/country/:id" component={Country}/>
         </Switch>
       </div>

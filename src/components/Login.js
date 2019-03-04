@@ -4,6 +4,7 @@ import { Button, Form, Segment, Message } from "semantic-ui-react";
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import { loggingInUser,loggingOut } from '../redux/actionCreator'
+
 class LoginForm extends PureComponent {
   state = {
     username: "",
