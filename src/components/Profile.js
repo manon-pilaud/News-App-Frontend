@@ -37,11 +37,11 @@ class Profile extends React.Component{
   }
 
   render(){
-    if (this.props.userCountries){
-      this.props.userCountries.map(country=>
-        this.props.fetchingUserNews(country)
-      )
-    }
+    // if (this.props.userCountries){
+    //   this.props.userCountries.map(country=>
+    //     this.props.fetchingUserNews(country)
+    //   )
+    // }
     return(
       <div>
         {this.state.bbcNewsFeed?

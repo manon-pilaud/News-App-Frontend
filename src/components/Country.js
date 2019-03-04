@@ -31,8 +31,7 @@ class Country extends PureComponent {
   fetch(`http://localhost:3000/api/v1/user_countries/${user_country.id}`,{
    method: "DELETE"})
   .then(response=>response.json())
-  this.props.unfollowThisCountry(this.props.country)
-  //WHY DO I GET AN ERROR SOMETIMES WHEN I IMMEDIATELY UNFOLLOW
+  .then(this.props.unfollowThisCountry(this.props.country))
   }
 
 
