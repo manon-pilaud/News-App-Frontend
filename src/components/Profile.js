@@ -4,17 +4,12 @@ import {fetchingUserNews} from '../redux/actionCreator'
 import NewsCard from './NewsCard.js'
 import BBCNews from './BBCNews.js'
 import CnnNews from './CnnNews.js'
+import LiveVideos from './LiveVideos'
 import UserCountryNews from './UserCountryNews'
 let Parser = require('rss-parser');
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
 
 class Profile extends React.Component{
-  // componentWillReceiveProps(nextProps){
-  //   //Should switch this to not unsafe
-  //     nextProps.userCountries.map(country=>
-  //       this.props.fetchingUserNews(country)
-  //     )
-  // }
   render(){
     if(this.props.userCountries){
       this.props.userCountries.map(country=>
@@ -23,6 +18,7 @@ class Profile extends React.Component{
     }
     return(
       <div>
+        <LiveVideos/>
         <CnnNews/>
         <BBCNews/>
         <UserCountryNews/>
