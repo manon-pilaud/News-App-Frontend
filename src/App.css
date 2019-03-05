@@ -40,12 +40,51 @@
  height: auto;
  width: 400px;
 }
+
+.cropped-2{
+  height: 150px;
+  width: 250px;
+  overflow: hidden;
+  padding:4px;
+  margin:3px;
+}
+
+.cropped-2 img {
+ height: auto;
+ width: 250px;
+}
+
+.cropped-3{
+  height: 150px;
+  width: 250px;
+  overflow: hidden;
+}
+
+.cropped-3 img {
+ height: auto;
+ width: 250px;
+}
+
+
 .user-news-section{
   position: absolute;
   top:80%;
   left:15%;
   width:800px;
 }
+
+.user-news-countries-list{
+  width:300px;
+}
+
+.user-country-news-card{
+  border:solid !important;
+  border-width: 1px !important;
+  padding:2px!important;
+  border-color:grey !important;
+}
+
+
 
 .videos{
   position:absolute;
@@ -57,6 +96,17 @@
   width: 250px;
   right:0%;
   top:10%;
+}
+
+
+.country-select {
+  background-color:rgb(48,48,48);
+  color:rgb(249,249,249);
+  border-radius: 25px;
+  border: 2px solid #AEC6CF;
+  padding: 20px;
+  width: 200px;
+  height: 30px;
 }
 
 .news-card{

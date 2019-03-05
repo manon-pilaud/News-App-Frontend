@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Image, Item } from 'semantic-ui-react'
 class ArticleUserNewsCard extends React.Component{
 
   createArticle=(articleInfo,country_id)=>{
@@ -55,21 +54,23 @@ class ArticleUserNewsCard extends React.Component{
     let {title,content,source,url,urlToImage} = this.props.articleInfo
     return(
       <div>
-        <Item>
-      <Item.Content>
-        <Item.Header as='a'>{title}</Item.Header>
-        <Item.Description>
+        <div className="user-country-news-card">
+
+      <div>
+        <h5 as='a'>{title}</h5>
+
         <a href={url}>
-          <Image src={urlToImage} size="medium" />
+
+            <img className="cropped-3"  src={urlToImage}/>
+
         </a>
-        </Item.Description>
-        <Item.Meta>{content}</Item.Meta>
-        <Item.Extra>{source.name}</Item.Extra>
-      </Item.Content>
+        <p>{content}</p>
+        <footer>{source.name}</footer>
+      </div>
       {localStorage.token?
       <button onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}>Add to reading List</button>
       :null}
-    </Item>
+    </div>
       </div>
     )
   }

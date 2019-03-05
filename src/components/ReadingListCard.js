@@ -19,7 +19,7 @@ class ReadingListCard extends React.Component{
       <Card className="reading-list-card">
       <Card.Content>
         <Card.Header>{this.props.articleInfo.title}</Card.Header>
-        <Image floated='left' size='large'  src={this.props.articleInfo.image_url}/>
+        <img className="cropped-2" floated='left'  src={this.props.articleInfo.image_url}/>
         <Card.Description>
           {this.props.articleInfo.description}
         </Card.Description>

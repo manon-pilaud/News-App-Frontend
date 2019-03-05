@@ -20,13 +20,15 @@ class UserCountryNews extends React.Component{
         <center><h2>Your Countries Top Stories</h2></center>
       {this.props.userCountryNews?
         <div>
-      <select onChange={(e)=>this.filterCountryNews(e)}>
-        <option value="">Select Country:</option>
-          {Object.keys(this.props.userCountryNews).map(function(keyName, keyIndex) {
-              return <option value={keyName}>{keyName}</option>
-          })
-        }
-      </select>
+        <center>
+          <select onChange={(e)=>this.filterCountryNews(e)} className="country-select">
+            <option value="">Select Country:</option>
+              {Object.keys(this.props.userCountryNews).map(function(keyName, keyIndex) {
+                  return <option value={keyName}>{keyName}</option>
+              })
+            }
+          </select>
+        </center>
         {!this.state.selectedCountry?
         <div>
         {

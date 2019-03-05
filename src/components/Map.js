@@ -44,7 +44,12 @@ class WorldMap extends React.Component{
     }
 
   }
-  mapRef = React.createRef()
+  // mapRef = React.createRef()
+  // <Geocoder
+  // mapboxApiAccessToken={MAPKEY}
+  //  mapRef={this.mapRef}
+  //  position="bottom"
+  // />
 
   render(){
     return(
@@ -58,11 +63,7 @@ class WorldMap extends React.Component{
           center={[11.883267, 41.865919]}
           zoom={[1.00]}
           >
-          <Geocoder
-          mapboxApiAccessToken={MAPKEY}
-           mapRef={this.mapRef}
-           position="bottom"
-          />
+
           <GeoJSONLayer
             data={'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson'}
             id='country-layer'
@@ -104,12 +105,15 @@ class WorldMap extends React.Component{
                 <img src={"https://png.icons8.com/color/search/35"}/>
             </Marker>
             </Map>
+
           }
         </div>
 
     )
   }
 }
+
+
 
 const mapStateToProps = (state) => {
   return{

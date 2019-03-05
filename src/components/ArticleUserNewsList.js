@@ -11,7 +11,7 @@ class ArticleUserNewsList extends React.Component{
         <h2>{this.props.countryName}</h2>
         {this.props.userCountryNews?
 
-          <div>{this.props.userCountryNews[this.props.countryName].map((article,index)=>
+          <div className="user-news-countries-list">{this.props.userCountryNews[this.props.countryName].map((article,index)=>
             <Item.Group><ArticleUserNewsCard key={index} articleInfo={article}/></Item.Group>
           )}</div>
         :null}
