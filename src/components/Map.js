@@ -43,9 +43,6 @@ class WorldMap extends React.Component{
   render(){
     return(
       <div>
-        <Geocoder
-        mapboxApiAccessToken={MAPKEY}
-        />
         {!this.state.mapToggle?
         <Map
           containerStyle={{ width: '100vw', height: '100vh'}}
@@ -55,6 +52,9 @@ class WorldMap extends React.Component{
           center={[11.883267, 41.865919]}
           zoom={[1.00]}
           >
+          <Geocoder
+          mapboxApiAccessToken={MAPKEY}
+          />
           <GeoJSONLayer
             data={'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson'}
             id='country-layer'

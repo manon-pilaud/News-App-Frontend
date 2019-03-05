@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchingBBC,fetchingCNN,fetchingUserNews} from '../redux/actionCreator'
 import NewsCard from './NewsCard.js'
+import ArticleCard from './ArticleCard'
 let Parser = require('rss-parser');
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
 
@@ -37,7 +38,7 @@ class Profile extends React.Component{
   }
 
   componentWillReceiveProps(nextProps){
-    //Should switch this to not unsafe 
+    //Should switch this to not unsafe
       nextProps.userCountries.map(country=>
         this.props.fetchingUserNews(country)
       )
@@ -58,9 +59,6 @@ class Profile extends React.Component{
           {this.props.cnnNews.map((news,index)=><NewsCard key={index} newsInfo={news}/>)}
         </div>
         :null}
-        <div>
-          USER COUNTRY NEWS
-        </div>
       </div>
     )
   }
