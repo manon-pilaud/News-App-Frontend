@@ -7,7 +7,6 @@ class ArticleUserNewsList extends React.Component{
   render(props){
     return(
       <div className="user-news-list">
-          <center><h2>Your Countries Top Stories</h2></center>
 
         <h2>{this.props.countryName}</h2>
         {this.props.userCountryNews?
