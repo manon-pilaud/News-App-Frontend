@@ -1,7 +1,6 @@
 import React from 'react'
-import ArticleUserNewsCard from './ArticleUserNewsCard.js'
+import ArticleUserNewsList from './ArticleUserNewsList.js'
 import {connect} from 'react-redux'
-import {fetchingUserNews} from '../redux/actionCreator'
 class UserCountryNews extends React.Component{
 
 
@@ -12,7 +11,7 @@ class UserCountryNews extends React.Component{
         <div>
         {
         Object.keys(this.props.userCountryNews).map(function(keyName, keyIndex) {
-            return<div>{keyName}</div>
+            return<ArticleUserNewsList key={keyIndex} countryName={keyName}/>
         })
       }
         </div>
