@@ -122,6 +122,15 @@ const userCountryNewsReducer=(oldState={},action)=>{
   }
 }
 
+const searchTextReducer = (oldState="", action) => {
+  switch(action.type){
+    case "SEARCHING":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const rootReducer =combineReducers({
   articles: articlesReducer,
   localArticles: localArticlesReducer,
@@ -131,7 +140,8 @@ const rootReducer =combineReducers({
   bccNews: bbcReducer,
   currentCountry: countryReducer,
   savedArticles: savedArticlesReducer,
-  userCountryNews: userCountryNewsReducer
+  userCountryNews: userCountryNewsReducer,
+  filterCountries: searchTextReducer
 })
 
 export default rootReducer
