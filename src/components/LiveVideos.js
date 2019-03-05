@@ -39,12 +39,13 @@ export default class LiveVideos extends React.Component{
       <div>
         <Dropdown onChange={(e)=>this.setLiveNews(e)} placeholder='Select Live Stream' fluid selection options={NewsOptions} />
         {this.state.currentLiveStream === "Sky News"?
-        <iframe width="420" height="315" src="https://www.youtube.com//embed/lrX6ktLg8WQ" frameBorder="0" allowFullScreen></iframe>
+          <iframe width="420" height="315" src="https://www.youtube.com//embed/lrX6ktLg8WQ" frameBorder="0" allowFullScreen></iframe>
         : this.state.currentLiveStream === "Al Jazeera"?
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/oGwHtl4yQDg" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/oGwHtl4yQDg" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         : this.state.currentLiveStream === "France 24"?
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/J78SdCzzumA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        :<iframe width="560" height="315" src="https://www.youtube.com/embed/dp8PhLsUcFE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/J78SdCzzumA" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        :
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/dp8PhLsUcFE" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         }
       </div>
     )

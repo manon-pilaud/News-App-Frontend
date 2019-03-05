@@ -57,12 +57,12 @@ class ArticleUserNewsCard extends React.Component{
       <div>
         <Item>
       <Item.Content>
-        <a href={url}>
         <Item.Header as='a'>{title}</Item.Header>
         <Item.Description>
+        <a href={url}>
           <Image src={urlToImage} size="medium" />
-        </Item.Description>
         </a>
+        </Item.Description>
         <Item.Meta>{content}</Item.Meta>
         <Item.Extra>{source.name}</Item.Extra>
       </Item.Content>
