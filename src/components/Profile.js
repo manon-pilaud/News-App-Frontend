@@ -1,64 +1,31 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchingBBC,fetchingCNN,fetchingUserNews} from '../redux/actionCreator'
+import {fetchingUserNews} from '../redux/actionCreator'
 import NewsCard from './NewsCard.js'
-import ArticleCard from './ArticleCard'
+import BBCNews from './BBCNews.js'
+import CnnNews from './CnnNews.js'
+import UserCountryNews from './UserCountryNews'
 let Parser = require('rss-parser');
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
 
 class Profile extends React.Component{
-  constructor(){
-    super()
-    this.state={
-      bccNewsFeed: ""
-    }
-  }
-    getBBCnews=()=>{
-      let parser = new Parser();
-      const bbcPromise = (async () => {
-        let feed = await parser.parseURL(CORS_PROXY + "http://feeds.bbci.co.uk/news/world/rss.xml" );
-        let bbcArray = []
-        feed.items.forEach(item => {
-          bbcArray.push(item)
-        });
-        return bbcArray
-      })();
-      bbcPromise.then(info=> {
-        this.setState({
-          bbcNewsFeed: info
-        })
-      })
-    }
-
-  componentDidMount(){
-      this.props.fetchingBBC()
-      //Figure out why this is not working with redux
-      this.props.fetchingCNN()
-      this.getBBCnews()
-  }
-
-  componentWillReceiveProps(nextProps){
-    //Should switch this to not unsafe
-      nextProps.userCountries.map(country=>
+  // componentWillReceiveProps(nextProps){
+  //   //Should switch this to not unsafe
+  //     nextProps.userCountries.map(country=>
+  //       this.props.fetchingUserNews(country)
+  //     )
+  // }
+  render(){
+    if(this.props.userCountries){
+      this.props.userCountries.map(country=>
         this.props.fetchingUserNews(country)
       )
-  }
-
-  render(){
+    }
     return(
       <div>
-        {this.state.bbcNewsFeed?
-        <div>
-          BBC BREAKING NEWS
-          {this.state.bbcNewsFeed.map((news,index)=><NewsCard key={index} newsInfo={news}/>)}
-        </div>
-        :null}
-        {this.props.cnnNews?
-        <div>
-          CNN BREAKING NEWS
-          {this.props.cnnNews.map((news,index)=><NewsCard key={index} newsInfo={news}/>)}
-        </div>
-        :null}
+        <CnnNews/>
+        <BBCNews/>
+        <UserCountryNews/>
       </div>
     )
   }
@@ -66,8 +33,6 @@ class Profile extends React.Component{
 
 const mapStateToProps=state=>{
   return{
-    bbcFeed: state.bbcNews,
-    cnnNews: state.cnnNews,
     userCountries: state.currentUser.countries
   }
 }
@@ -75,8 +40,6 @@ const mapStateToProps=state=>{
 
 const mapDispatchToProps = dispatch =>{
   return{
-    fetchingBBC: ()=>{dispatch(fetchingBBC())},
-    fetchingCNN: ()=>{dispatch(fetchingCNN())},
     fetchingUserNews:(country)=>{dispatch(fetchingUserNews(country))}
   }
 }
