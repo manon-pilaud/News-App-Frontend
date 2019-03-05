@@ -1,6 +1,6 @@
 import React from 'react'
 import ArticleUserNewsCard from './ArticleUserNewsCard'
-import {Item} from 'semantic-ui-react'
+import {Card} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class ArticleUserNewsList extends React.Component{
@@ -12,7 +12,7 @@ class ArticleUserNewsList extends React.Component{
         {this.props.userCountryNews?
 
           <div className="user-news-countries-list">{this.props.userCountryNews[this.props.countryName].map((article,index)=>
-            <Item.Group><ArticleUserNewsCard key={index} articleInfo={article}/></Item.Group>
+            <Card.Group itemsPerRow={4}><ArticleUserNewsCard key={index} articleInfo={article}/></Card.Group>
           )}</div>
         :null}
       </div>

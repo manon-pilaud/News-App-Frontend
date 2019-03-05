@@ -23,13 +23,10 @@ class MyCountries extends React.Component{
       <div>
       <button onClick={this.showAll}>Display all Countries</button>
         <Grid.Column>
-        <Header icon>
-          <Icon name='search' />
-          Find Country
-        </Header>
 
         <Search placeholder='Search countries...' />
       </Grid.Column>
+
       {!this.props.userCountries?null:
         <Card.Group className="my-countries">
         {this.props.userCountries.map(country=><CountryCard key={country.id} country={country}/>)}
@@ -38,11 +35,6 @@ class MyCountries extends React.Component{
     <div className="country-cards">
     <button onClick={this.showAll}>Display My Countries</button>
       <Grid.Column>
-      <Header icon>
-        <Icon name='search' />
-        Find Country
-      </Header>
-
       <Search placeholder='Search countries...' />
     </Grid.Column>
       {!this.props.countries?null:

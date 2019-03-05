@@ -10,6 +10,13 @@ const Map = ReactMapboxGl({
   accessToken: MAPKEY
 });
 
+// <Geocoder
+//   mapboxApiAccessToken={MAPKEY}
+//   mapRef={this.mapRef}
+//   position={"absolute"}
+// />
+
+
 
 
 const linePaint: MapboxGL.LinePaint = {
@@ -44,12 +51,8 @@ class WorldMap extends React.Component{
     }
 
   }
-  // mapRef = React.createRef()
-  // <Geocoder
-  // mapboxApiAccessToken={MAPKEY}
-  //  mapRef={this.mapRef}
-  //  position="bottom"
-  // />
+  mapRef = React.createRef()
+
 
   render(){
     return(
@@ -59,11 +62,11 @@ class WorldMap extends React.Component{
           containerStyle={{ width: '100vw', height: '100vh'}}
           onClick={this.onClickMap}
           container={'map'}
+          position={'relative'}
           style={'mapbox://styles/mandyyp/cjsnp8ymx661o1fpl9r9l7puq'}
           center={[11.883267, 41.865919]}
           zoom={[1.00]}
           >
-
           <GeoJSONLayer
             data={'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson'}
             id='country-layer'
@@ -84,6 +87,7 @@ class WorldMap extends React.Component{
             containerStyle={{ width: '100vw', height: '100vh'}}
             onClick={this.onClickMap}
             container={'map'}
+            position={'relative'}
             style={'mapbox://styles/mandyyp/cjsmbr4cm0nue1fnue0hvno8i'}
             center={[11.883267, 41.865919]}
             zoom={[1.00]}

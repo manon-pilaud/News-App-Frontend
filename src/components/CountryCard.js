@@ -35,7 +35,7 @@ class CountryCard extends React.Component{
     return this.props.country.name === "World News"?null:(
       <div>
 
-      <Card className="country-card">
+      <Card id="country-card">
       <Card.Content>
         <Image floated='right' size='mini' src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`} />
         <Card.Header>{this.props.country.name}</Card.Header>

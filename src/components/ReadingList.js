@@ -5,11 +5,9 @@ import ReadingListCard from './ReadingListCard'
 class ReadingList extends React.Component{
   render(){
     return !this.props.readingList?null:(
-      <div className="reading-list-section">
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={4} id="reading-list-section">
         {this.props.readingList.map((article,index)=><ReadingListCard key={index} articleInfo={article}/>)}
       </Card.Group>
-      </div>
     )
   }
 }

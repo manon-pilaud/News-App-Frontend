@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Card,Button} from 'semantic-ui-react'
 class ArticleUserNewsCard extends React.Component{
 
   createArticle=(articleInfo,country_id)=>{
@@ -54,23 +55,20 @@ class ArticleUserNewsCard extends React.Component{
     let {title,content,source,url,urlToImage} = this.props.articleInfo
     return(
       <div>
-        <div className="user-country-news-card">
-
-      <div>
-        <h5 as='a'>{title}</h5>
-
-        <a href={url}>
-
-            <img className="cropped-3"  src={urlToImage}/>
-
-        </a>
-        <p>{content}</p>
-        <footer>{source.name}</footer>
-      </div>
-      {localStorage.token?
-      <button onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}>Add to reading List</button>
-      :null}
-    </div>
+        <Card className="reading-list-card">
+        <Card.Content>
+          <Card.Header>{title}</Card.Header>
+          <img className="cropped-3" floated='left'  src={urlToImage}/>
+          <Card.Description>
+            {content}
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+            <Button basic color='green' o onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}>
+              Add to Reading List
+            </Button>
+        </Card.Content>
+      </Card>
       </div>
     )
   }
