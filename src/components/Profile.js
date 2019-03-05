@@ -19,8 +19,10 @@ class Profile extends React.Component{
     return(
       <div>
         <LiveVideos/>
+        <div className="stream">
         <CnnNews/>
         <BBCNews/>
+        </div>
         <UserCountryNews/>
       </div>
     )

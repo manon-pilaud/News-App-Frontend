@@ -10,6 +10,8 @@ const Map = ReactMapboxGl({
   accessToken: MAPKEY
 });
 
+
+
 const linePaint: MapboxGL.LinePaint = {
   'line-color': 'white',
   'line-width': 0.5
@@ -20,7 +22,9 @@ const fillPaint: MapboxGL.FillPaint={
 }
 
 
+
 class WorldMap extends React.Component{
+
   state={
     mapToggle: false
   }
@@ -40,6 +44,8 @@ class WorldMap extends React.Component{
     }
 
   }
+  mapRef = React.createRef()
+
   render(){
     return(
       <div>
@@ -54,6 +60,8 @@ class WorldMap extends React.Component{
           >
           <Geocoder
           mapboxApiAccessToken={MAPKEY}
+           mapRef={this.mapRef}
+           position="bottom"
           />
           <GeoJSONLayer
             data={'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson'}

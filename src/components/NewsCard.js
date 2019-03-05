@@ -49,7 +49,7 @@ class NewsCard extends React.Component{
   }
   render(){
     return(
-      <div>
+      <div className="news-card">
         <a href={this.props.newsInfo.link}>
         <h5>{this.props.newsInfo.title}</h5>
         <p>{this.props.newsInfo.contentSnippet}</p>

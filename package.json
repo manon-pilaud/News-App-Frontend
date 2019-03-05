@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "deck.gl": "^6.4.5",
     "immutable": "^4.0.0-rc.12",
     "mapbox-gl": "^0.53.0",
     "newsapi": "^2.4.0",

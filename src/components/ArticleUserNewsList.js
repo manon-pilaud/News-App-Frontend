@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 class ArticleUserNewsList extends React.Component{
   render(props){
     return(
-      <div>
+      <div className="user-news-list">
         <h2>{this.props.countryName}</h2>
         {this.props.userCountryNews?
           <div>{this.props.userCountryNews[this.props.countryName].map((article,index)=>
