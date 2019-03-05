@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Image, Item } from 'semantic-ui-react'
 class ArticleUserNewsCard extends React.Component{
 
   createArticle=(articleInfo,country_id)=>{
@@ -54,19 +55,21 @@ class ArticleUserNewsCard extends React.Component{
     let {title,content,source,url,urlToImage} = this.props.articleInfo
     return(
       <div>
+        <Item>
+      <Item.Content>
         <a href={url}>
-        <center>
-        <h5>{title}</h5>
-        </center>
-        <img className="crop" alt={title} src={urlToImage}/>
-      </a>
-      {content && !content.includes("..") && !content.includes(",,") && !content.includes("%") && !content.includes("()")?
-        <p>{content}</p>
-        :null}
-        <p>Source: {source.name}</p>
-        {localStorage.token?
-        <button onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}>Add to reading List</button>
-        :null}
+        <Item.Header as='a'>{title}</Item.Header>
+        <Item.Description>
+          <Image src={urlToImage} size="medium" />
+        </Item.Description>
+        </a>
+        <Item.Meta>{content}</Item.Meta>
+        <Item.Extra>{source.name}</Item.Extra>
+      </Item.Content>
+      {localStorage.token?
+      <button onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}>Add to reading List</button>
+      :null}
+    </Item>
       </div>
     )
   }
