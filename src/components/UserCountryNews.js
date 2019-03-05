@@ -3,7 +3,6 @@ import ArticleUserNewsList from './ArticleUserNewsList.js'
 import {connect} from 'react-redux'
 class UserCountryNews extends React.Component{
 
-
   render(){
     return(
       <div>
@@ -11,7 +10,7 @@ class UserCountryNews extends React.Component{
         <div>
         {
         Object.keys(this.props.userCountryNews).map(function(keyName, keyIndex) {
-            return<ArticleUserNewsList key={keyIndex} countryName={keyName}/>
+            return <ArticleUserNewsList key={keyIndex} countryName={keyName}/>
         })
       }
         </div>

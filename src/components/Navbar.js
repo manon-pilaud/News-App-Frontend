@@ -7,7 +7,7 @@ export default class Navbar extends React.Component{
     <div className="nav">
     <div className="nav-header">
       <div className="nav-title">
-        ExploreNews
+        StayCurrent
       </div>
     </div>
     <div className="nav-btn">
@@ -19,7 +19,7 @@ export default class Navbar extends React.Component{
     </div>
     <input type="checkbox" id="nav-check"/>
     <div className="nav-links">
-      <Link to="/feed">Breaking News</Link>
+      <Link to="/feed">Top Stories</Link>
       <Link to="/map">Map</Link>
       <Link to="/reading-list">Reading List</Link>
       <Link to="/my-countries">My Countries</Link>

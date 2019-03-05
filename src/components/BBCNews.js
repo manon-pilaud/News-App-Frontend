@@ -37,7 +37,7 @@ class BBCNews extends React.Component{
       <div>
         {this.state.bbcNewsFeed?
         <div>
-          BBC BREAKING NEWS
+          <center><h4>BBC BREAKING NEWS</h4></center>
           {this.state.bbcNewsFeed.map((news,index)=><NewsCard key={index} newsInfo={news}/>)}
         </div>
         :null}

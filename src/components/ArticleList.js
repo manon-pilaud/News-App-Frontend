@@ -40,6 +40,7 @@ class ArticleList extends React.Component{
      </div>
      {this.state.toggled?<center><h3>Local Sources</h3></center>:<center><h3>All Sources</h3></center>}
       {!this.state.clicked?
+      <Segment style={{overflow: 'auto', maxHeight: 1200 }}>
       <div className="all-articles">
         {this.state.toggled?
           <div>
@@ -49,7 +50,8 @@ class ArticleList extends React.Component{
                 articleInfo={article}
               />
             ))}
-          </div>:
+          </div>
+          :
         <div>
           {this.props.articles.map((article,index) => (
             <ArticleCard
@@ -59,8 +61,8 @@ class ArticleList extends React.Component{
           ))}
         </div>
       }
-
       </div>
+      </Segment>
       :null}
       </div>
   ):null

@@ -37,7 +37,7 @@ class CnnNews extends React.Component{
       <div>
         {this.state.CnnNewsFeed?
         <div>
-          CNN BREAKING NEWS
+          <center><h4>CNN BREAKING NEWS</h4></center>
           {this.state.CnnNewsFeed.map((news,index)=><NewsCard key={index} newsInfo={news}/>)}
         </div>
         :null}

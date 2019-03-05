@@ -5,10 +5,8 @@ import {fetchingArticles} from '../redux/actionCreator'
 import{fetchingLocalArticles,setCountry} from '../redux/actionCreator'
 import ArticleList from './ArticleList'
 import WorldFacts from '../factbook.json'
-
 class Country extends PureComponent {
   followCountry=()=>{
-
   fetch('http://localhost:3000/api/v1/user_countries',{
    method: "POST",
    headers:{
