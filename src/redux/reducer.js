@@ -86,6 +86,14 @@ const userReducer = (oldState="", action) => {
           ...oldState,
           articles: copyOfArticles
         }
+      case "REMOVE_RL_RELATIONSHIP":
+      let indexRLJoin = oldState.reading_lists.findIndex(instance =>instance.id=== action.joinInfo.id)
+      let copyOfJoinRL = [...oldState.reading_lists]
+      copyOfJoinRL.splice(indexRLJoin,1)
+      return{
+        ...oldState,
+        reading_lists: copyOfJoinRL
+      }
     default:
       return oldState
   }

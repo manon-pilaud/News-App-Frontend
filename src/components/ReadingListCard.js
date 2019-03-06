@@ -8,6 +8,7 @@ class ReadingListCard extends React.Component{
     fetch(`http://localhost:3000/api/v1/reading_lists/${target.id}`,{
      method: "DELETE"})
     .then(response=>response.json())
+    .then(joinInfo=>this.props.removeRelationshipRL(joinInfo))
     .then(this.props.removeThisFromList(article))
 
   }
@@ -44,6 +45,7 @@ const mapStateToProps=state=>{
 
 const mapDispatchToProps=dispatch=>{
   return{
+      removeRelationshipRL:(joinInfo)=>{dispatch({type:"REMOVE_RL_RELATIONSHIP",joinInfo})},
       removeThisFromList:(article)=>{dispatch({type:"REMOVE_FROM_LIST",article})}
   }
 }
