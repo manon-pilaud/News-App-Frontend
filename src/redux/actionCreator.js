@@ -251,7 +251,11 @@ function searching(value){
   return {type: "SEARCHING", payload: value}
 }
 
+function clearSearch(){
+  return{type:"CLEAR_SEARCH",payload:""}
+}
 
 
 
-export{searching,setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser}
+
+export{clearSearch,searching,setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser}

@@ -126,6 +126,8 @@ const searchTextReducer = (oldState="", action) => {
   switch(action.type){
     case "SEARCHING":
       return action.payload
+    case "CLEAR_SEARCH":
+      return action.payload
     default:
       return oldState
   }
@@ -141,7 +143,7 @@ const rootReducer =combineReducers({
   currentCountry: countryReducer,
   savedArticles: savedArticlesReducer,
   userCountryNews: userCountryNewsReducer,
-  filterCountries: searchTextReducer
+  filters: searchTextReducer
 })
 
 export default rootReducer

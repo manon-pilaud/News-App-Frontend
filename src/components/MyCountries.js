@@ -1,10 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Card} from 'semantic-ui-react'
+import { clearSearch } from '../redux/actionCreator'
 import SearchBar from './CountrySearchBar'
 import CountryCard from './CountryCard'
 import { Button, Divider, Grid, Header, Icon, Search, Segment } from 'semantic-ui-react'
 class MyCountries extends React.Component{
+
+  componentWillUnmount(){
+    this.props.clearSearch()
+  }
+
   state={
     showAll: false
   }
@@ -49,16 +55,19 @@ class MyCountries extends React.Component{
   }
 }
 
+
 const mapStateToProps = (state) => {
   return{
     userCountries: state.currentUser.countries,
     countries: state.countries,
-    searchText: state.filterCountries
-    // userCountries: state.currentUser.countries.filter(
-    //   c =>
-    //     c.name.toLowerCase().includes(state.filterCountries.toLowerCase())
-    // )
+    searchText: state.filters
   }
 }
 
-export default (connect(mapStateToProps)(MyCountries));
+const mapDispatchToProps=dispatch=>{
+  return{
+      clearSearch: () => {dispatch(clearSearch())}
+  }
+}
+
+export default (connect(mapStateToProps,mapDispatchToProps)(MyCountries));
