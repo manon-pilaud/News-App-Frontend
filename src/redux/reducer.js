@@ -60,9 +60,15 @@ const userReducer = (oldState="", action) => {
         countries: copyOfCountries
       }
 
-      //Im stuck
+      case "REMOVE_COUNTRY_RELATIONSHIP":
+      let indexJoin = oldState.user_countries.findIndex(instance =>instance.id=== action.joinInfo.id)
+      let copyOfJoin = [...oldState.user_countries]
+      copyOfJoin.splice(indexJoin,1)
+      return{
+        ...oldState,
+        user_countries: copyOfJoin
+      }
       case"UPDATE_READING_LIST":
-      console.log(oldState,"UPDATE")
       return {
         ...oldState,
         reading_lists: [...oldState.reading_lists, action.joinInfo]

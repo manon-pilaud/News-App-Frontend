@@ -8,7 +8,10 @@ class CountryCard extends React.Component{
     fetch(`http://localhost:3000/api/v1/user_countries/${targetCountry.id}`,{
      method: "DELETE"})
     .then(response=>response.json())
+    .then(joinInfo=>this.props.removeRelationship(joinInfo))
     .then(this.props.unfollowThisCountry(this.props.country))
+
+    //Need to remove from user_countries join table as well
   }
 
   followCountry=()=>{
@@ -74,7 +77,9 @@ const mapDispatchToProps=dispatch=>{
   return{
     followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})},
     updateUserCountries:(data)=>{dispatch({type:"UPDATE_USER_COUNTRIES",data})},
+    removeRelationship:(joinInfo)=>{dispatch({type:"REMOVE_COUNTRY_RELATIONSHIP",joinInfo})},
     unfollowThisCountry:(country)=>{dispatch({type:"UNFOLLOW_COUNTRY",country})}
+
 
   }
 }

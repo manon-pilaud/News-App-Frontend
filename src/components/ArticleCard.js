@@ -58,7 +58,7 @@ class ArticleCard extends React.Component{
         <center>
         <h5>{title}</h5>
         </center>
-        <img className="crop" alt={title} src={urlToImage}/>
+        <img className="cropped-2" alt={title} src={urlToImage}/>
       </a>
       {content && !content.includes("..") && !content.includes(",,") && !content.includes("%") && !content.includes("()")?
         <p>{content}</p>
