@@ -19,6 +19,17 @@
   margin-left:4% !important;
 }
 
+#plane-icon{
+  padding: 4.5px;
+}
+
+#explore-country{
+  margin:3px;
+  padding-top: 3px;
+  font-size: 16.5px;
+
+}
+
 #reading-list-section{
   width:100vw;
   margin-left:6.5%;
@@ -116,14 +127,19 @@
 
 
 .country-select {
-  background-color:rgb(48,48,48);
-  color:rgb(249,249,249);
+  background-color:white;
+  color:rgb(96,186,178);
   border-radius: 25px;
-  border: 2px solid #AEC6CF;
+  border: 2px solid rgb(167,216,213);
   padding: 20px;
   width: 200px;
   height: 30px;
+
 }
+.country-select:focus{
+ outline: 2px solid rgb(76, 204, 204);
+}
+
 
 .news-card{
   background-color: rgb(249,249,249);

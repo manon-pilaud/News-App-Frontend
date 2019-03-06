@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Button,Icon} from 'semantic-ui-react'
 class ArticleCard extends React.Component{
 
   createArticle=(articleInfo,country_id)=>{
@@ -65,8 +66,10 @@ class ArticleCard extends React.Component{
         :null}
         <p>Source: {source.name}</p>
         {localStorage.token?
-        <button onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}>Add to reading List</button>
-        :null}
+        <center>
+        <Button size="mini" basic color='blue' content='Blue'icon labelPosition='right' onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}><Icon name="add"/>Add to reading List</Button>
+        </center>
+      :null}
       </div>
     )
   }

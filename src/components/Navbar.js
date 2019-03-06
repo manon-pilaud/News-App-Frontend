@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Icon} from 'semantic-ui-react'
 export default class Navbar extends React.Component{
   render(){
     return(
@@ -7,7 +8,7 @@ export default class Navbar extends React.Component{
     <div className="nav">
     <div className="nav-header">
       <div className="nav-title">
-        StayCurrent
+        <Icon name="world"/>Happenings
       </div>
     </div>
     <div className="nav-btn">

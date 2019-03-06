@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Button,Icon} from 'semantic-ui-react'
 class NewsCard extends React.Component{
   createArticle=(article)=>{
     let articleExists= this.props.savedArticles.find(savedArticle=>savedArticle.title === article.title)
@@ -55,7 +56,7 @@ class NewsCard extends React.Component{
         <p>{this.props.newsInfo.contentSnippet}</p>
         </a>
         {localStorage.token?
-        <button onClick={()=>this.createArticle(this.props.newsInfo)}>add to reading list</button>
+        <center><Button size="mini" basic color='blue' content='Blue'icon labelPosition='right' onClick={()=>this.createArticle(this.props.newsInfo)}><Icon name="add"/>add to reading list</Button></center>
         :null}
       </div>
     )

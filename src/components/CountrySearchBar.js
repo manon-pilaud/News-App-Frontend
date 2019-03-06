@@ -6,7 +6,7 @@ import {Search} from 'semantic-ui-react'
 const Searchbar = props => {
   return (
     <div>
-        <Search placeholder='Search...' value={props.value} onSearchChange={(e)=>props.onChange(e.target.value)} />
+        <Search showNoResults={false} placeholder='Search...' value={props.value} onSearchChange={(e)=>props.onChange(e.target.value)} />
     </div>
   )
 }

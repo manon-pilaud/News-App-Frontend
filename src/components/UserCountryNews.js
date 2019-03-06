@@ -25,7 +25,7 @@ class UserCountryNews extends React.Component{
           <select onChange={(e)=>this.filterCountryNews(e)} className="country-select">
             <option value="">Select Country:</option>
               {Object.keys(this.props.userCountryNews).map(function(keyName, keyIndex) {
-                  return <option value={keyName}>{keyName}</option>
+                  return <option  value={keyName}>{keyName}</option>
               })
             }
           </select>

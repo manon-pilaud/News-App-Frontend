@@ -27,7 +27,7 @@ class MyCountries extends React.Component{
     <div>
       {!this.state.showAll?
       <div>
-      <button onClick={this.showAll}>Display all Countries</button>
+      <Button basic color='teal' content='Teal' size="small" icon labelPosition='left'  onClick={this.showAll}><Icon name="world"/>Display all Countries</Button>
       <SearchBar/>
       {!this.props.userCountries?null:
         <Card.Group className="my-countries">
@@ -38,7 +38,7 @@ class MyCountries extends React.Component{
       </Card.Group>}
     </div>:
     <div className="country-cards">
-    <button onClick={this.showAll}>Display My Countries</button>
+    <Button basic color='teal' content='Teal' size="small" icon labelPosition='left' onClick={this.showAll}><Icon name="world"/>Display My Countries</Button>
       <SearchBar/>
       {!this.props.countries?null:
          <Card.Group className="my-countries">

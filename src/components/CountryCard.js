@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image,Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 class CountryCard extends React.Component{
   unfollowCountry=()=>{
@@ -43,11 +43,11 @@ class CountryCard extends React.Component{
       <Card.Content>
         <Image floated='right' size='mini' src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`} />
         <Card.Header>{this.props.country.name}</Card.Header>
-        <Card.Meta>Some Country Info</Card.Meta>
         <Link to={`country/${this.props.country.id}`}>
-        <Card.Description>
+        <div id="explore-country"><Card.Meta >
           Explore {this.props.country.name}
-        </Card.Description>
+          <Icon name="plane" id="plane-icon"/>
+        </Card.Meta></div>
         </Link>
       </Card.Content>
       <Card.Content extra>
