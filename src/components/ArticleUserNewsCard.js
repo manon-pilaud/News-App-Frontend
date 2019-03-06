@@ -54,10 +54,12 @@ class ArticleUserNewsCard extends React.Component{
   render(props){
     let {title,content,source,url,urlToImage} = this.props.articleInfo
     return(
-        <Card className="reading-list-card">
+        <Card className="news-list-card">
         <Card.Content>
           <Card.Header>{title}</Card.Header>
+          <a href={url}>
           <img className="cropped-3" floated='left'  src={urlToImage}/>
+          </a>
           <Card.Description>
             {content}
           </Card.Description>
@@ -67,6 +69,7 @@ class ArticleUserNewsCard extends React.Component{
               Add to Reading List
             </Button>
         </Card.Content>
+
       </Card>
     )
   }

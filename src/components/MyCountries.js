@@ -27,8 +27,8 @@ class MyCountries extends React.Component{
     <div>
       {!this.state.showAll?
       <div>
-      <Button basic color='teal' content='Teal' size="small" icon labelPosition='left'  onClick={this.showAll}><Icon name="world"/>Display all Countries</Button>
-      <SearchBar/>
+      <Button id="display-countries" basic color='teal' content='Teal' size="small" icon labelPosition='left'  onClick={this.showAll}><Icon name="world"/>Display all Countries</Button>
+      <div id="my-country-searchbar"><SearchBar/></div>
       {!this.props.userCountries?null:
         <Card.Group className="my-countries">
         {this.props.userCountries.filter(
@@ -38,8 +38,8 @@ class MyCountries extends React.Component{
       </Card.Group>}
     </div>:
     <div className="country-cards">
-    <Button basic color='teal' content='Teal' size="small" icon labelPosition='left' onClick={this.showAll}><Icon name="world"/>Display My Countries</Button>
-      <SearchBar/>
+    <Button id="display-countries" basic color='teal' content='Teal' size="small" icon labelPosition='left' onClick={this.showAll}><Icon name="world"/>Display My Countries</Button>
+      <div id="my-country-searchbar"><SearchBar/></div>
       {!this.props.countries?null:
          <Card.Group className="my-countries">
         {this.props.countries.filter(

@@ -29,7 +29,7 @@ class Profile extends React.Component{
         <div className="videos">
           <LiveVideos/>
         </div>
-        <Segment className="stream" style={{overflow: 'auto', maxHeight: 1300 }}>
+        <Segment className="stream" style={{overflow: 'auto', maxHeight: 550 }}>
           <div >
             <CnnNews/>
             <BBCNews/>

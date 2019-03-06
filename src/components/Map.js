@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactMapboxGl, {GeoJSONLayer,Feature,Layer,Marker} from "react-mapbox-gl";
 import {connect} from 'react-redux'
-import Geocoder from 'react-mapbox-gl-geocoder'
+import Geocoder from './Geocoder'
 // import {withRouter} from 'react-router-dom';
 // import {Link} from 'react-router-dom'
 
@@ -10,11 +10,7 @@ const Map = ReactMapboxGl({
   accessToken: MAPKEY
 });
 
-// <Geocoder
-//   mapboxApiAccessToken={MAPKEY}
-//   mapRef={this.mapRef}
-//   position={"absolute"}
-// />
+
 
 
 
@@ -71,7 +67,6 @@ class WorldMap extends React.Component{
           containerStyle={{ width: '100vw', height: '100vh'}}
           onClick={this.onClickMap}
           container={'map'}
-          position={'relative'}
           style={'mapbox://styles/mandyyp/cjsnp8ymx661o1fpl9r9l7puq'}
           center={[11.883267, 41.865919]}
           zoom={[1.00]}
@@ -85,6 +80,7 @@ class WorldMap extends React.Component{
               (e)=>{
                 this.onClickMap(e.features, this.props.countries)}}
             >
+
           </GeoJSONLayer>
           <Marker onClick={this.worldToggled}
               coordinates={[-2.122169,80.99]}

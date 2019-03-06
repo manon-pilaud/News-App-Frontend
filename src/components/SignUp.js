@@ -35,13 +35,10 @@ class SignUp extends PureComponent {
     }
     return(
       <div>
-      <Segment className="login-form">
+      <Segment id="signup-form">
         <Form
           onSubmit={()=>{this.handleSignUpSubmit()}}
-          size="mini"
-          key="mini"
         >
-          <Form.Group widths="equal">
             <Form.Input
               label="username"
               placeholder="username"
@@ -57,7 +54,6 @@ class SignUp extends PureComponent {
               onChange={this.handleChange}
               value={this.state.password}
             />
-          </Form.Group>
           <Button type="submit">Sign Up</Button>
         </Form>
           <Link to="/login">already a user? Sign in</Link>

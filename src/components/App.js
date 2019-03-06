@@ -27,6 +27,7 @@ class App extends Component {
     return (
       <div>
         <Navbar/>
+        <iframe width="1920" scrolling="no" height="20" frameborder="0" src="https://widgets.tc2000.com/WidgetServer.ashx?id=134382"></iframe>
         <Switch>
           <Route exact path="/map" component={WorldMap} />
           <Route exact path='/login' component={Login}/>

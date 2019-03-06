@@ -33,15 +33,12 @@ class LoginForm extends PureComponent {
 
   render(props) {
     return(
-      <div>
+      <div className="login-background">
       {!this.props.currentUser?
-      <Segment className="login-form">
+      <Segment id="login-form">
         <Form
           onSubmit={()=>{this.handleLoginSubmit()}}
-          size="mini"
-          key="mini"
         >
-          <Form.Group widths="equal">
             <Form.Input
               label="username"
               placeholder="username"
@@ -57,11 +54,10 @@ class LoginForm extends PureComponent {
               onChange={this.handleChange}
               value={this.state.password}
             />
-          </Form.Group>
           <Button type="submit">Login</Button>
         </Form>
         <Link to="/signup">Not a user? Sign up!</Link>
-      </Segment>:<button onClick={()=>{this.handleLoginSubmit()}}>Sign Out</button>}
+      </Segment>:<Button id="sign-out" color='red' onClick={()=>{this.handleLoginSubmit()}}>Sign Out</Button>}
       </div>
     );
   }

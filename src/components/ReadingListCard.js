@@ -22,7 +22,7 @@ class ReadingListCard extends React.Component{
         <Card.Header>{this.props.articleInfo.title}</Card.Header>
         <img className="cropped-2" floated='left'  src={this.props.articleInfo.image_url}/>
         <Card.Description>
-          {this.props.articleInfo.description}
+          {this.props.articleInfo.description.substring(0, 282)}...
         </Card.Description>
       </Card.Content>
       <Card.Content extra>

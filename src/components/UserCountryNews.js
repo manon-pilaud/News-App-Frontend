@@ -1,7 +1,6 @@
 import React from 'react'
 import ArticleUserNewsList from './ArticleUserNewsList.js'
 import {connect} from 'react-redux'
-import { Dropdown } from 'semantic-ui-react'
 
 class UserCountryNews extends React.Component{
   state={
@@ -18,17 +17,28 @@ class UserCountryNews extends React.Component{
 
   render(){
     return(
-      <div className="user-news-countries-div">
-        <h2>Your Countries Top Stories</h2>
-      {this.props.userCountryNews?
-        <div className="user-news-countries-div">
+    <div>
+      {!this.props.userCountryNews?null:
+    <div>
+
+      <div className="country-name-select">
+        <center>
+          <div id="country-name">
+          <h2 >Top Stories For Your Countries</h2>
+          </div>
+        </center>
+        <center>
           <select onChange={(e)=>this.filterCountryNews(e)} className="country-select">
-            <option value="">Select Country:</option>
+            <option value="">All Countries</option>
               {Object.keys(this.props.userCountryNews).map(function(keyName, keyIndex) {
                   return <option  value={keyName}>{keyName}</option>
               })
             }
           </select>
+          </center>
+        </div>
+        <div className="user-news-countries-div">
+
         {!this.state.selectedCountry?
         <div >
         {
@@ -39,7 +49,8 @@ class UserCountryNews extends React.Component{
     </div>: <ArticleUserNewsList countryName={this.state.selectedCountry}/>
     }
         </div>
-      :<div>You are not following any countries</div>}
+    </div>}
+
       </div>
     )
   }

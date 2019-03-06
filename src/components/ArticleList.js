@@ -25,9 +25,8 @@ class ArticleList extends React.Component{
       <center><h2>News</h2></center>
       <div className="toggled-div">
         <center>
-      <Segment compact>
        <Checkbox slider onChange={this.toggled}/>
-     </Segment></center>
+</center>
      </div>
      {this.state.toggled?<center><h3>Local Sources</h3></center>:<center><h3>All Sources</h3></center>}
       <Segment style={{overflow: 'auto', maxHeight: 1200}}>

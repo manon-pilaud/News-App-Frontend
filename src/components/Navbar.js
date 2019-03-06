@@ -1,14 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Icon} from 'semantic-ui-react'
-export default class Navbar extends React.Component{
+import {connect} from 'react-redux'
+class Navbar extends React.Component{
   render(){
     return(
       <div>
     <div className="nav">
     <div className="nav-header">
       <div className="nav-title">
-        <Icon name="world"/>Happenings
+        <Icon name="world"/>StayCurrent
       </div>
     </div>
     <div className="nav-btn">
@@ -24,7 +25,7 @@ export default class Navbar extends React.Component{
       <Link to="/map">Map</Link>
       <Link to="/reading-list">Reading List</Link>
       <Link to="/my-countries">My Countries</Link>
-      {localStorage.token?
+      {this.props.currentUser?
         <Link to="/login">Sign Out</Link>
       :
         <Link to="/login">Sign In</Link>
@@ -35,3 +36,11 @@ export default class Navbar extends React.Component{
     )
   }
 }
+
+const mapStateToProps=state=>{
+  return{
+    currentUser: state.currentUser
+  }
+}
+
+export default (connect(mapStateToProps)(Navbar));
