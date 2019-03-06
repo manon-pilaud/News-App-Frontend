@@ -45,7 +45,16 @@ class WorldMap extends React.Component{
       let countriesList = countries
       let name = features[0].properties.sovereignt
       let foundCountry = countriesList.find(country=>name.includes(country.name))
-      if(foundCountry){
+      if(name==="Papua New Guinea"){
+        this.props.history.push("country/109")
+      }
+      else if(name==="Guinea Bissau"){
+        this.props.history.push("country/148")
+      }
+      else if(name==="Equatorial Guinea"){
+        this.props.history.push("country/152")
+      }
+      else{
         this.props.history.push(`/country/${foundCountry.id}`)
       }
     }
