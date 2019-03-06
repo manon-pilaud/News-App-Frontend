@@ -130,7 +130,8 @@ const userCountryNewsReducer=(oldState={},action)=>{
   switch(action.type){
     case "FETCHED_USER_COUNTRY_NEWS":
     return {...oldState, ...action.articlesHash}
-      //Why is it repeating and how do I add to end
+    case "CLEAR_COUNTRY_NEWS":
+      return action.payload
     default:
       return oldState
   }

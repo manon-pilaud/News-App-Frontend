@@ -5,16 +5,12 @@ import {connect} from 'react-redux'
 
 class ArticleUserNewsList extends React.Component{
   render(props){
-    return(
-      <div className="user-news-list">
-
+    return !this.props.userCountryNews?null:(
+      <div>
         <h2>{this.props.countryName}</h2>
-        {this.props.userCountryNews?
-
-          <div className="user-news-countries-list">{this.props.userCountryNews[this.props.countryName].map((article,index)=>
-            <Card.Group itemsPerRow={4}><ArticleUserNewsCard key={index} articleInfo={article}/></Card.Group>
-          )}</div>
-        :null}
+          {this.props.userCountryNews[this.props.countryName].map((article,index)=>
+            <Card.Group id="user-news-countries-list" itemsPerRow={5}><ArticleUserNewsCard key={index} articleInfo={article}/></Card.Group>
+          )}
       </div>
     )
   }

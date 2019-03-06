@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchingUserNews} from '../redux/actionCreator'
+import { clearCountryNews } from '../redux/actionCreator'
 import NewsCard from './NewsCard.js'
 import BBCNews from './BBCNews.js'
 import CnnNews from './CnnNews.js'
@@ -12,6 +13,11 @@ let Parser = require('rss-parser');
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
 
 class Profile extends React.Component{
+
+  componentWillUnmount(){
+    this.props.clearCountryNews()
+  }
+
   render(){
     if(this.props.userCountries){
       this.props.userCountries.map(country=>
@@ -48,7 +54,8 @@ const mapStateToProps=state=>{
 
 const mapDispatchToProps = dispatch =>{
   return{
-    fetchingUserNews:(country)=>{dispatch(fetchingUserNews(country))}
+    fetchingUserNews:(country)=>{dispatch(fetchingUserNews(country))},
+    clearCountryNews: () => {dispatch(clearCountryNews())}
   }
 }
 

@@ -32,9 +32,11 @@ export default class LiveVideos extends React.Component{
   render(){
     return(
       <div>
+        <div id="dropdown-video">
         <center>
-          <Dropdown style={{maxWidth: 500 }} onChange={(e)=>this.setLiveNews(e)} placeholder='Select Live Stream' fluid selection options={NewsOptions} />
+          <Dropdown style={{maxWidth: 300 }} onChange={(e)=>this.setLiveNews(e)} placeholder='Select Live Stream' fluid selection options={NewsOptions} />
         </center>
+        </div>
         {this.state.currentLiveStream === "Sky News"?
           <iframe width="700" height="400" src="https://www.youtube.com//embed/lrX6ktLg8WQ" frameBorder="0" allowFullScreen></iframe>
         : this.state.currentLiveStream === "Al Jazeera"?

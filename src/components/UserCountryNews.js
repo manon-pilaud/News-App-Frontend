@@ -14,13 +14,14 @@ class UserCountryNews extends React.Component{
     })
   }
 
+
+
   render(){
     return(
-      <div>
-        <center><h2>Your Countries Top Stories</h2></center>
+      <div className="user-news-countries-div">
+        <h2>Your Countries Top Stories</h2>
       {this.props.userCountryNews?
-        <div>
-        <center>
+        <div className="user-news-countries-div">
           <select onChange={(e)=>this.filterCountryNews(e)} className="country-select">
             <option value="">Select Country:</option>
               {Object.keys(this.props.userCountryNews).map(function(keyName, keyIndex) {
@@ -28,9 +29,8 @@ class UserCountryNews extends React.Component{
               })
             }
           </select>
-        </center>
         {!this.state.selectedCountry?
-        <div>
+        <div >
         {
         Object.keys(this.props.userCountryNews).map(function(keyName, keyIndex) {
             return <ArticleUserNewsList key={keyIndex} countryName={keyName}/>
@@ -39,7 +39,7 @@ class UserCountryNews extends React.Component{
     </div>: <ArticleUserNewsList countryName={this.state.selectedCountry}/>
     }
         </div>
-      :null}
+      :<div>You are not following any countries</div>}
       </div>
     )
   }
@@ -50,6 +50,7 @@ const mapStateToProps=state=>{
     userCountryNews: state.userCountryNews
   }
 }
+
 
 
 export default (connect(mapStateToProps)(UserCountryNews))

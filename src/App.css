@@ -80,9 +80,18 @@
   width:100vw;
 }
 
-.user-news-countries-list{
-  width:300px;
+#dropdown-video{
+  margin:3px;
 }
+
+#user-news-countries-list{
+  width: 100vw;
+}
+
+.user-news-countries-div{
+  width: 100vw;
+}
+
 
 .user-country-news-card{
   border:solid !important;

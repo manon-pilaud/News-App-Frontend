@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
+import { Button } from 'semantic-ui-react'
 import {fetchingArticles} from '../redux/actionCreator'
 import{fetchingLocalArticles,setCountry} from '../redux/actionCreator'
 import ArticleList from './ArticleList'
@@ -48,8 +49,9 @@ class Country extends PureComponent {
           {localStorage.token?
             <div>
           {!!!this.props.user.countries.find(userCountry=>userCountry.name === this.props.country.name)?
-          <center><button onClick={this.followCountry}>Follow {this.props.country.name}</button></center>:
-          <center><button onClick={this.unfollowCountry}>unfollow {this.props.country.name}</button></center>}
+
+          <center><Button size='mini' onClick={this.followCountry} positive>Follow {this.props.country.name}</Button></center>:
+          <center><Button size='mini' negative onClick={this.unfollowCountry}>Unfollow {this.props.country.name}</Button></center>}
             </div>
             :null}
           <center><img src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`}/></center>

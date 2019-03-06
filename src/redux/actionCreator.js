@@ -255,7 +255,11 @@ function clearSearch(){
   return{type:"CLEAR_SEARCH",payload:""}
 }
 
+function clearCountryNews(){
+  return{type:"CLEAR_COUNTRY_NEWS",payload:{}}
+}
 
 
 
-export{clearSearch,searching,setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser}
+
+export{clearCountryNews,clearSearch,searching,setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser}

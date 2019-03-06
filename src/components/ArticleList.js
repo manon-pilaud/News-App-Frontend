@@ -7,16 +7,10 @@ class ArticleList extends React.Component{
   constructor(){
     super()
     this.state={
-      clicked: false,
       toggled: false
     }
   }
 
-  clicked=()=>{
-    this.setState({
-      clicked: !this.state.clicked
-    })
-  }
 
   toggled=()=>{
     this.setState({
@@ -25,25 +19,21 @@ class ArticleList extends React.Component{
   }
 
   render(){
-
   return this.props.articles && this.props.localArticles?(
-
-
 
     <div className="articles-cont">
       <center><h2>News</h2></center>
       <div className="toggled-div">
-      <button className="toggled_button" onClick={this.clicked}>Hide News</button>
-        <Segment compact>
+        <center>
+      <Segment compact>
        <Checkbox slider onChange={this.toggled}/>
-     </Segment>
+     </Segment></center>
      </div>
      {this.state.toggled?<center><h3>Local Sources</h3></center>:<center><h3>All Sources</h3></center>}
-      {!this.state.clicked?
       <Segment style={{overflow: 'auto', maxHeight: 1200}}>
       <div className="all-articles">
         {this.state.toggled?
-          <div>
+            <div>
             {this.props.localArticles.map((article,index) => (
               <ArticleCard
                 key={index}
@@ -63,7 +53,6 @@ class ArticleList extends React.Component{
       }
       </div>
       </Segment>
-      :null}
       </div>
   ):null
   }

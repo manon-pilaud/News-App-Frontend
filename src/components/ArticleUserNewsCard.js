@@ -54,7 +54,6 @@ class ArticleUserNewsCard extends React.Component{
   render(props){
     let {title,content,source,url,urlToImage} = this.props.articleInfo
     return(
-      <div>
         <Card className="reading-list-card">
         <Card.Content>
           <Card.Header>{title}</Card.Header>
@@ -69,7 +68,6 @@ class ArticleUserNewsCard extends React.Component{
             </Button>
         </Card.Content>
       </Card>
-      </div>
     )
   }
 }

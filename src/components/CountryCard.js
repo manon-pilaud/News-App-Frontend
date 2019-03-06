@@ -33,6 +33,7 @@ class CountryCard extends React.Component{
   }
 
   render(){
+    //Fix logic here sometimes doesn't show up
     let followed = this.props.user.countries.includes(this.props.country)
     let followed_two = !!this.props.country.users && !!this.props.country.users.find(user=>user.id === this.props.user.user_id)
     return this.props.country.name === "World News"?null:(
