@@ -25,7 +25,10 @@ class MyCountries extends React.Component{
       <SearchBar/>
       {!this.props.userCountries?null:
         <Card.Group className="my-countries">
-        {this.props.userCountries.map(country=><CountryCard key={country.id} country={country}/>)}
+        {this.props.userCountries.filter(
+          c =>
+            c.name.toLowerCase().includes(this.props.searchText.toLowerCase())
+        ).map(country=><CountryCard key={country.id} country={country}/>)}
       </Card.Group>}
     </div>:
     <div className="country-cards">
@@ -33,7 +36,10 @@ class MyCountries extends React.Component{
       <SearchBar/>
       {!this.props.countries?null:
          <Card.Group className="my-countries">
-        {this.props.countries.map(country=><CountryCard key={country.id} country={country}/>)}
+        {this.props.countries.filter(
+          c =>
+            c.name.toLowerCase().includes(this.props.searchText.toLowerCase())
+        ).map(country=><CountryCard key={country.id} country={country}/>)}
       </Card.Group>
     }
     </div>
@@ -47,6 +53,7 @@ const mapStateToProps = (state) => {
   return{
     userCountries: state.currentUser.countries,
     countries: state.countries,
+    searchText: state.filterCountries
     // userCountries: state.currentUser.countries.filter(
     //   c =>
     //     c.name.toLowerCase().includes(state.filterCountries.toLowerCase())
