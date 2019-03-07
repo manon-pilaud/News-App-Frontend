@@ -61,7 +61,7 @@ class WorldMap extends React.Component{
 
   render(){
     return(
-      <div>
+      <div id="map-div">
         {!this.state.mapToggle?
         <Map
           containerStyle={{ width: '100vw', height: '100vh'}}

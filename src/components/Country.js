@@ -54,11 +54,10 @@ class Country extends PureComponent {
           <center><Button size='mini' negative onClick={this.unfollowCountry}>Unfollow {this.props.country.name}</Button></center>}
             </div>
             :null}
-          <center><img src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`}/></center>
           </div>
           {WorldFacts.countries[this.props.country.name.toLowerCase()]?
           <div className="country-info">
-          <h2>{this.props.country.name} Profile</h2>
+          <img src={`https://www.countryflags.io/${this.props.country.flag}/shiny/64.png`}/>
           <h3>Quick Facts</h3>
           <strong>Current Leaders:</strong>
             <ul>

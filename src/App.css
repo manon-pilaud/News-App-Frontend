@@ -3,17 +3,30 @@
 
 .body{
   position: relative;
+  background-color: blue;
+}
+
+body#login{
+  background-image: url('https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  height: 100vh;
+  overflow: hidden;
+}
+
+body#signup{
+  background-image: url('https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  height: 100vh;
+  overflow: hidden;
 }
 
 .toggled-div{
   text-align: center;
 }
 
-.toggled_button{
+/* .toggled_button{
   left:50%;
   top:0.7%;
   position: absolute;
-}
+} */
 
 #login-form{
   width:30vw;
@@ -88,9 +101,6 @@
   width:200px;
 }
 
-.login-background{
-  background-image: url("https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-}
 
 .crop {
  height: 200px;
@@ -140,8 +150,8 @@
 
 #user-news-countries-list{
   width:100vw;
-
 }
+
 
 .user-news-countries-div{
   width: 100vw;
@@ -149,29 +159,30 @@
 }
 
 
-.user-country-news-card{
+
+/* .user-country-news-card{
   border:solid !important;
   border-width: 1px !important;
   padding:2px!important;
   border-color:grey !important;
-}
+} */
 
 
 
 .videos{
   position:absolute;
-  left:15%;
+  left:15vw;
 }
 
 .country-name-select{
-  margin-right: 22%;
+  margin-right: 22vw;
 }
 
 .stream{
   position:absolute !important;
-  width: 250px;
-  right:0%;
-  top:9%;
+  width: 18vw;
+  right:0.5vw;
+  top:4.8vw;
 }
 
 .news-list-card{
@@ -212,29 +223,45 @@
 .articles-cont{
   position: absolute;
   left: 1%;
-  top:12%;
-  width: 300px;
+  top:16.5vh;
+  width: 22vw;
 }
 
 .country-info{
   font-family: 'Roboto', sans-serif;
   background-color:rgb(248,248,255);
   position: absolute;
-  left: 25%;
-  top:29%;
-  width:1000px;
+  left: 27vw;
+  top:30vh;
+  width:69vw;
+  padding:2vw
+}
+
+.country-info img{
+  position: relative;
+  left: 1vw;
+}
+
+.flag-and-header{
+  left:52vw;
+  position: absolute;
+}
+
+.flag-and-header h1{
+  padding:1.5vw;
 }
 
 
 
-@keyframes App-logo-spin {
+
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 /*Navbar*/
 * {

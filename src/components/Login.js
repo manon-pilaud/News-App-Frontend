@@ -33,6 +33,7 @@ class LoginForm extends PureComponent {
 
   render(props) {
     return(
+      <body id="login">
       <div className="login-background">
       {!this.props.currentUser?
       <Segment id="login-form">
@@ -59,6 +60,7 @@ class LoginForm extends PureComponent {
         <Link to="/signup">Not a user? Sign up!</Link>
       </Segment>:<Button id="sign-out" color='red' onClick={()=>{this.handleLoginSubmit()}}>Sign Out</Button>}
       </div>
+      </body>
     );
   }
 }

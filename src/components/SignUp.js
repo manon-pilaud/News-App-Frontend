@@ -34,7 +34,8 @@ class SignUp extends PureComponent {
       return <Redirect to="/feed" />;
     }
     return(
-      <div>
+    <body id="signup">
+      <div className="signup-background">
       <Segment id="signup-form">
         <Form
           onSubmit={()=>{this.handleSignUpSubmit()}}
@@ -59,7 +60,7 @@ class SignUp extends PureComponent {
           <Link to="/login">already a user? Sign in</Link>
       </Segment>
       </div>
-
+    </body>
     )
   }
  }
