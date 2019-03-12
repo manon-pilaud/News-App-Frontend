@@ -14,7 +14,7 @@ import UserCountries from './MyCountries'
 import ReadingList from './ReadingList'
 import SignUp from './SignUp'
 
-
+  // <iframe width="1920" scrolling="no" height="20" frameborder="0" src="https://widgets.tc2000.com/WidgetServer.ashx?id=134382"></iframe>
 class App extends Component {
    componentDidMount(){
      if(localStorage.token){
@@ -28,8 +28,6 @@ class App extends Component {
     return (
       <div>
         <NavbarTwo/>
-        <Navbar/>
-        <iframe width="1920" scrolling="no" height="20" frameborder="0" src="https://widgets.tc2000.com/WidgetServer.ashx?id=134382"></iframe>
         <Switch>
           <Route exact path="/map" component={WorldMap} />
           <Route exact path='/login' component={Login}/>
