@@ -7,6 +7,7 @@ import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {fetchingCountries,currentUser,fetchingSavedArticles} from '../redux/actionCreator'
 import Navbar from './Navbar'
+import NavbarTwo from './NavbarTwo'
 import Login from './Login'
 import Profile from './Profile'
 import UserCountries from './MyCountries'
@@ -26,6 +27,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <NavbarTwo/>
         <Navbar/>
         <iframe width="1920" scrolling="no" height="20" frameborder="0" src="https://widgets.tc2000.com/WidgetServer.ashx?id=134382"></iframe>
         <Switch>
