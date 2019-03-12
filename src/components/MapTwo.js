@@ -30,9 +30,9 @@ class Map extends Component {
     viewport: {
       width: 400,
       height: 400,
-      latitude:41.865919,
-      longitude: -11.883267,
-      zoom: 1
+      latitude:31.312739,
+      longitude: -0.0,
+      zoom: 1.15
     },
     searchResultLayer: null
   };
@@ -57,6 +57,9 @@ class Map extends Component {
 
   handleViewportChange = viewport => {
     if (viewport.longitude > 0) {
+      viewport.longitude = 0;
+    }
+    else if (viewport.longitude < 1) {
       viewport.longitude = 0;
     }
     this.setState({
@@ -91,6 +94,7 @@ class Map extends Component {
         {...viewport}
         onViewportChange={this.handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
+        mapStyle={'mapbox://styles/mandyyp/cjt5aksox3ne81el5qwo5o9it'}
       >
         <Geocoder
           mapRef={this.mapRef}

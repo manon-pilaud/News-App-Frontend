@@ -30,8 +30,8 @@ class App extends Component {
       <div>
         <NavbarTwo/>
         <Switch>
-          <Route exact path="/map" component={WorldMap} />
-          <Route exact path="/mapTwo" component={MapTwo} />
+          <Route exact path="/oldMap" component={WorldMap} />
+          <Route exact path="/map" component={MapTwo} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/feed' component={Profile}/>
             <Route exact path="/my-countries" render={() => (
