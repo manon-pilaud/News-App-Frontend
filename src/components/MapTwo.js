@@ -34,7 +34,8 @@ class Map extends Component {
       longitude: -0.0,
       zoom: 1.15
     },
-    searchResultLayer: null
+    searchResultLayer: null,
+    countryHoverLayer:null
   };
 
   mapRef = React.createRef();
@@ -56,12 +57,12 @@ class Map extends Component {
   };
 
   handleViewportChange = viewport => {
-    if (viewport.longitude > 0) {
-      viewport.longitude = 0;
-    }
-    else if (viewport.longitude < 1) {
-      viewport.longitude = 0;
-    }
+    // if (viewport.longitude > 0) {
+    //   viewport.longitude = 0;
+    // }
+    // else if (viewport.longitude < 1) {
+    //   viewport.longitude = 0;
+    // }
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     });
@@ -77,6 +78,7 @@ class Map extends Component {
   };
 
   handleOnResult = event => {
+    console.log(event.result.geometry)
     this.setState({
       searchResultLayer: new GeoJsonLayer({
         id: "search-result",
@@ -85,8 +87,20 @@ class Map extends Component {
     });
   };
 
+  handleCountryHover = event => {
+    if ( event && event.object &&  event.object.geometry){
+      this.setState({
+        countryHoverLayer: new GeoJsonLayer({
+          id: "country-hover",
+          getFillColor: [176,196,222],
+          data: event.object.geometry
+        })
+      });
+    }
+  };
+
   render() {
-    const { viewport, searchResultLayer } = this.state;
+    const { viewport, searchResultLayer,countryHoverLayer } = this.state;
 
     return (
       <MapGL
@@ -102,7 +116,7 @@ class Map extends Component {
           onViewportChange={this.handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
         />
-        <DeckGL {...viewport} layers={[searchResultLayer]} />
+        <DeckGL {...viewport} layers={[searchResultLayer],[countryHoverLayer]} />
         <DeckGL  {...this.state.viewport} layers={[
             new GeoJsonLayer({
               id: 'geojson-layer',
@@ -118,14 +132,14 @@ class Map extends Component {
               getLineColor: f => [246, 245, 245,0],
               getFillColor: f => [255, 0, 0, 0],
               pickable: true,
-              onClick: info => this.onClickMap(info.object.properties.sovereignt,this.props.countries)
+              onClick: info => this.onClickMap(info.object.properties.sovereignt,this.props.countries),
+              onHover: info => this.handleCountryHover(info)
             })
           ]}/>
       </MapGL>
     );
   }
 }
-    // onHover: info => console.log('Hovered:', info),
 
   const mapStateToProps = (state) => {
     return{
