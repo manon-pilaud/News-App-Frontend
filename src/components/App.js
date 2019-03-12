@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Route, Switch ,Redirect} from "react-router";
 import '../App.css';
 import WorldMap from './Map'
+import MapTwo from './MapTwo'
 import Country from './Country'
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
@@ -30,6 +31,7 @@ class App extends Component {
         <NavbarTwo/>
         <Switch>
           <Route exact path="/map" component={WorldMap} />
+          <Route exact path="/mapTwo" component={MapTwo} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/feed' component={Profile}/>
             <Route exact path="/my-countries" render={() => (

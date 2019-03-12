@@ -11,6 +11,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-map-gl": "^4.0.14",
+    "react-map-gl-geocoder": "^1.6.4",
     "react-mapbox-gl": "^4.2.0",
     "react-mapbox-gl-geocoder": "^1.0.3",
     "react-redux": "^6.0.1",

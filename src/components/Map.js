@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactMapboxGl, {GeoJSONLayer,Feature,Layer,Marker} from "react-mapbox-gl";
 import {connect} from 'react-redux'
-import Geocoder from './Geocoder'
 // import {withRouter} from 'react-router-dom';
 // import {Link} from 'react-router-dom'
 

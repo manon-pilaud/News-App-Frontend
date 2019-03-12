@@ -65,7 +65,7 @@ class ArticleCard extends React.Component{
         <p>{content}</p>
         :null}
         <p>Source: {source.name}</p>
-        {localStorage.token?
+        {this.props.country && this.props.user && this.props.savedArticles?
         <center>
         <Button size="mini" basic color='blue' content='Blue'icon labelPosition='right' onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}><Icon name="add"/>Add to reading List</Button>
         </center>
