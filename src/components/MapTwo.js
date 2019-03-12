@@ -4,18 +4,32 @@ import { render } from "react-dom";
 import MapGL from "react-map-gl";
 import DeckGL, { GeoJsonLayer } from "deck.gl";
 import Geocoder from "react-map-gl-geocoder";
+import {connect} from 'react-redux';
 
-// Please be a decent human and don't abuse my Mapbox API token.
-// If you fork this sandbox, replace my API token with your own.
-// Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
 const MAPBOX_TOKEN =
     process.env.REACT_APP_MAP_API_KEY;
 
 class Map extends Component {
+
+  onClickMap=(countryName,countriesList)=> {
+    let foundCountry = countriesList.find(country=>countryName.includes(country.name))
+    if(countryName==="Papua New Guinea"){
+      this.props.history.push("country/109")
+    }
+    else if(countryName==="Guinea Bissau"){
+      this.props.history.push("country/148")
+    }
+    else if(countryName==="Equatorial Guinea"){
+      this.props.history.push("country/152")
+    }
+    else{
+      this.props.history.push(`/country/${foundCountry.id}`)
+    }
+  }
   state = {
     viewport: {
-      width: 100,
-      height: 100,
+      width: 400,
+      height: 400,
       latitude:41.865919,
       longitude: -11.883267,
       zoom: 1
@@ -42,12 +56,14 @@ class Map extends Component {
   };
 
   handleViewportChange = viewport => {
+    if (viewport.longitude > 0) {
+      viewport.longitude = 0;
+    }
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     });
   };
 
-  // if you are happy with Geocoder default settings, you can just use handleViewportChange directly
   handleGeocoderViewportChange = viewport => {
     const geocoderDefaultOverrides = { transitionDuration: 1000 };
 
@@ -61,10 +77,7 @@ class Map extends Component {
     this.setState({
       searchResultLayer: new GeoJsonLayer({
         id: "search-result",
-        data: event.result.geometry,
-        getFillColor: [255, 0, 0, 128],
-        getRadius: 1000,
-        pointRadiusMinPixels: 10
+        data: event.result.geometry
       })
     });
   };
@@ -95,19 +108,27 @@ class Map extends Component {
               filled: true,
               stroked: true,
               lineWidth: 2,
-              lineColor:  [255, 0, 0],
+              lineColor:  [246, 245, 245,0],
               lineWidthMinPixels: 2,
               wireframe: true,
-              getLineColor: f => [255, 0, 0],
+              getLineColor: f => [246, 245, 245,0],
               getFillColor: f => [255, 0, 0, 0],
               pickable: true,
-              onHover: info => console.log('Hovered:', info),
-              onClick: info => console.log('Clicked:', info)
+              onClick: info => this.onClickMap(info.object.properties.sovereignt,this.props.countries)
             })
           ]}/>
       </MapGL>
     );
   }
 }
+    // onHover: info => console.log('Hovered:', info),
 
-export default Map
+  const mapStateToProps = (state) => {
+    return{
+      countries: state.countries
+    }
+  }
+
+
+
+export default (connect(mapStateToProps)(Map));
