@@ -7,7 +7,8 @@ import BBCNews from './BBCNews.js'
 import CnnNews from './CnnNews.js'
 import LiveVideos from './LiveVideos'
 import UserCountryNews from './UserCountryNews'
-import { Segment} from 'semantic-ui-react';
+import {Segment} from 'semantic-ui-react';
+import RssFeeds from './RSSFeed'
 
 let Parser = require('rss-parser');
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
@@ -29,12 +30,8 @@ class Profile extends React.Component{
         <div className="videos">
           <LiveVideos/>
         </div>
-        <Segment className="stream" style={{overflow: 'auto', maxHeight: 550 }}>
-          <div >
-            <CnnNews/>
-            <BBCNews/>
-          </div>
-         </Segment>
+
+        <RssFeeds/>
          <div className="user-news-section">
          {localStorage.token?
            <UserCountryNews/>:
@@ -44,6 +41,13 @@ class Profile extends React.Component{
     )
   }
 }
+
+// <Segment className="stream" style={{overflow: 'auto', maxHeight: 550 }}>
+//   <div >
+//     <CnnNews/>
+//     <BBCNews/>
+//   </div>
+ // </Segment>
 
 const mapStateToProps=state=>{
   return{

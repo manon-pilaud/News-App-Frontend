@@ -1,7 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Icon, Menu, Segment, Grid} from 'semantic-ui-react'
+import {Icon, Menu, Segment, Grid,Image} from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import globe from '../globe.png'
+import globeTwo from '../globeTwo.png'
+import globeThree from '../globeThree.png'
 class NavbarTwo extends React.Component{
   state = { activeItem: 'home' }
 
@@ -15,7 +18,7 @@ class NavbarTwo extends React.Component{
           <Menu inverted pointing secondary size="huge">
             <Menu.Menu position='left'>
               <Menu.Item>
-                 <Icon name="world"/>StayCurrent
+                 Inquire Gl<Icon id="logo" name="globe"/>bal
               </Menu.Item>
             </Menu.Menu>
             <Menu.Menu id="centered-menu">

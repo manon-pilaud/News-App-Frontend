@@ -20,9 +20,11 @@ class ReadingListCard extends React.Component{
       <Card className="reading-list-card">
       <Card.Content>
         <Card.Header>{this.props.articleInfo.title}</Card.Header>
-        <img className="cropped-2" floated='left'  src={this.props.articleInfo.image_url}/>
+        <a href={this.props.articleInfo.article_url}>
+          <img className="cropped-2" floated='left'  src={this.props.articleInfo.image_url}/>
+        </a>
         <Card.Description>
-          {this.props.articleInfo.description.substring(0, 282)}...
+          {this.props.articleInfo.description.substring(0, 200)}...
         </Card.Description>
       </Card.Content>
       <Card.Content extra>

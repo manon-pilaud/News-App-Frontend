@@ -6,6 +6,16 @@
   background-color: blue;
 }
 
+#logo{
+  padding: 0px;
+  margin:0px;
+}
+
+#logoTwo{
+  padding:0px;
+  margin-right:0px;
+}
+
 body#login{
   background-image: url('https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
   height: 100vh;
@@ -184,9 +194,9 @@ body#signup{
 
 .stream{
   position:absolute !important;
-  width: 18vw;
+  width: 22vw;
   right:0.5vw;
-  top:4.8vw;
+  top:10vh;
 }
 
 .news-list-card{
