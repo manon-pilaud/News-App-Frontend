@@ -2,11 +2,12 @@ import React from 'react'
 import { Tab ,Segment} from 'semantic-ui-react'
 import BBCNews from './BBCNews.js'
 import CnnNews from './CnnNews.js'
+import NYTNews from './NYTNews'
 
 const panes = [
   { menuItem: 'BBC', render: () => <Tab.Pane><BBCNews/></Tab.Pane> },
   { menuItem: 'CNN', render: () => <Tab.Pane><CnnNews/></Tab.Pane> },
-  { menuItem: 'Other', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+  { menuItem: 'New York Times', render: () => <Tab.Pane><NYTNews/></Tab.Pane> },
 ]
 
 const RssFeeds = () =>
