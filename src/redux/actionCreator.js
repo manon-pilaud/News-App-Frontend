@@ -1,5 +1,5 @@
 const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
-
+const GuardianKey = process.env.REACT_APP_GUARDIAN_API_KEY;
 // Testing
 // const NewsKey = "snfdajkndjscdjbcbhjbv"
 
@@ -84,6 +84,28 @@ function fetchingLocalArticles(country){
       })
     }
   }
+}
+
+function fetchingGuardianArticles(country){
+  return(dispatch)=>{
+    fetch(`http://content.guardianapis.com/world/france?api-key=${GuardianKey}`,{
+          mode: "cors",
+          method: "GET",
+          headers: {
+          "Accept": "application/json"
+        }
+  })
+    .then(response => response.json())
+    .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+
+  }
+
+}
+
+
+
+function fetchedGuardianArticles(articles){
+  return {type:"FETCHED_GUARDIAN", articles}
 }
 
 
@@ -262,4 +284,4 @@ function clearCountryNews(){
 
 
 
-export{clearCountryNews,clearSearch,searching,setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser}
+export{clearCountryNews,clearSearch,searching,setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser,fetchingGuardianArticles,fetchedGuardianArticles}

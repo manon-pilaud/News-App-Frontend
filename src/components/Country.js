@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import { Button } from 'semantic-ui-react'
-import {fetchingArticles} from '../redux/actionCreator'
-import{fetchingLocalArticles,setCountry} from '../redux/actionCreator'
+import{fetchingArticles,fetchingLocalArticles,fetchingGuardianArticles,setCountry} from '../redux/actionCreator'
 import ArticleList from './ArticleList'
 import WorldFacts from '../factbook.json'
 class Country extends PureComponent {
@@ -40,6 +39,7 @@ class Country extends PureComponent {
     if(this.props.country){
       this.props.fetchingArticles(this.props.country)
       this.props.fetchingLocalArticles(this.props.country)
+      this.props.fetchingGuardianArticles(this.props.country)
       this.props.setCountry(this.props.country)
     }
     return !this.props.country?null:(
@@ -115,6 +115,7 @@ const mapDispatchToProps=dispatch=>{
   return{
     fetchingArticles:(country)=>{dispatch(fetchingArticles(country))},
     fetchingLocalArticles:(country)=>{dispatch(fetchingLocalArticles(country))},
+    fetchingGuardianArticles:(country)=>{dispatch(fetchingGuardianArticles(country))},
     setCountry:(country)=>{dispatch(setCountry(country))},
     updateUserCountries:(data)=>{dispatch({type:"UPDATE_USER_COUNTRIES",data})},
     followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})},
