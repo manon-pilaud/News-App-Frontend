@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import ArticleCard from './ArticleCard'
-import { Checkbox, Segment } from 'semantic-ui-react'
+import GuardianList from './GuardianList'
+import { Checkbox, Segment,Tab } from 'semantic-ui-react'
 
 class ArticleList extends React.Component{
   constructor(){
@@ -51,6 +52,7 @@ class ArticleList extends React.Component{
         </div>
       }
       </div>
+    <GuardianList/>
       </Segment>
       </div>
   ):null

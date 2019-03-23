@@ -12,7 +12,7 @@ const panes = [
 
 const RssFeeds = () =>
 <Segment className="stream" style={{overflow: 'auto', maxHeight: 590 }}>
-  <div >
+  <div>
      <Tab panes={panes} />
   </div>
  </Segment>

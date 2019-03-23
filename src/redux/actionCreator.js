@@ -87,8 +87,9 @@ function fetchingLocalArticles(country){
 }
 
 function fetchingGuardianArticles(country){
+  console.log(country)
   return(dispatch)=>{
-    fetch(`http://content.guardianapis.com/world/france?api-key=${GuardianKey}`,{
+    fetch(`http://content.guardianapis.com/world/${country.name.toLowerCase().split(" ").join("-")}?api-key=${GuardianKey}`,{
           mode: "cors",
           method: "GET",
           headers: {
@@ -112,14 +113,14 @@ function fetchedGuardianArticles(articles){
 function fetchingArticles(country){
   return(dispatch)=>{
     if(country.name === "Jordan"){
-      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan&sources=bbc-news&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
         dispatch(fetchedArticles(articles))
       })
     }
     else{
-      fetch(`https://newsapi.org/v2/everything?q=${country.name}&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?q=${country.name}&sources=bbc-news&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
         dispatch(fetchedArticles(articles))

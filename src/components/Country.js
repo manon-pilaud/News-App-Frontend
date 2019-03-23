@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import { Button } from 'semantic-ui-react'
 import{fetchingArticles,fetchingLocalArticles,fetchingGuardianArticles,setCountry} from '../redux/actionCreator'
-import ArticleList from './ArticleList'
+import ArticlesContainer from './ArticlesContainer'
 import WorldFacts from '../factbook.json'
 class Country extends PureComponent {
   followCountry=()=>{
@@ -96,8 +96,7 @@ class Country extends PureComponent {
         </div>:null}
         </div>
           :null}
-
-          <ArticleList/>
+          <ArticlesContainer/>
         </div>
     )
   }

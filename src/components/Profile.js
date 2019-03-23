@@ -30,7 +30,6 @@ class Profile extends React.Component{
         <div className="videos">
           <LiveVideos/>
         </div>
-
         <RssFeeds/>
          <div className="user-news-section">
          {localStorage.token?
