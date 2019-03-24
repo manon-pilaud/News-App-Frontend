@@ -6,9 +6,9 @@ import AllSourcesArticleList from './AllSourcesArticleList'
 import NewYorkTimesList from './NewYorkTimesList'
 
 const panes = [
-  { menuItem: 'All Sources', render: () => <Tab.Pane><AllSourcesArticleList/></Tab.Pane> },
-  { menuItem: 'Guardian', render: () => <Tab.Pane><GuardianList/></Tab.Pane> },
   { menuItem: 'New York Times', render: () => <Tab.Pane><NewYorkTimesList/></Tab.Pane> },
+  { menuItem: 'Guardian', render: () => <Tab.Pane><GuardianList/></Tab.Pane> },
+  { menuItem: 'All Sources', render: () => <Tab.Pane><AllSourcesArticleList/></Tab.Pane> },
   { menuItem: 'Local News', render: () => <Tab.Pane><LocalArticleList/></Tab.Pane> }
 ]
 

@@ -237,14 +237,14 @@ function fetchingArticles(country){
     let targetDate = (curr_year + "-" +"0"+ curr_month + "-" + curr_date)
   return(dispatch)=>{
     if(country.name === "Jordan"){
-      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan&from=${targetDate}&sortBy=relevancy&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?sources=the-new-york-times,bbc-news,al-jazeera-english,cnn,politico,the-washington-post&q=Hashemite-Kingdom-of-Jordan&from=${targetDate}&sortBy=relevancy&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
         dispatch(fetchedArticles(articles))
       })
     }
     else{
-      fetch(`https://newsapi.org/v2/everything?q=${country.name}&from=${targetDate}&sortBy=relevancy&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?sources=the-new-york-times,bbc-news,al-jazeera-english,cnn,politico,the-washington-post&q=${country.name}&from=${targetDate}&sortBy=relevancy&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
         dispatch(fetchedArticles(articles))
