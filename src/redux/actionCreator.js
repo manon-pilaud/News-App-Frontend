@@ -2,7 +2,7 @@ const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
 const GuardianKey = process.env.REACT_APP_GUARDIAN_API_KEY;
 // Testing
 // const NewsKey = "snfdajkndjscdjbcbhjbv"
-
+//https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${country.name}&fq=news_desk:("Foreign")&begin_date=20190101&api-key=${APIKEY}
 function setCountry(country){
   return{type:"SET_COUNTRY", country}
 }
