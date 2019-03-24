@@ -55,12 +55,15 @@ class ArticleCardGuardian extends React.Component{
       <div>
         <div className="articleCard">
           <a href={webUrl}>
+            <center>
             <div id="linked">
               <h3>{webTitle}</h3>
-              <center>
+
                 <img src="https://d1.awsstatic.com/case-studies/600x400_Guardian_Logo.ff53f7742c12197d84de817819af20ceb973ab4d.png" width="250" height="200"/>
-              </center>
-            </div></a>
+
+            </div>
+            </center>
+          </a>
           {this.props.country && this.props.user && this.props.savedArticles?
           <center>
           <Button size="mini" basic color='blue' content='Blue'icon labelPosition='right' onClick={()=>this.createArticle(this.props.articleInfo,this.props.country.id)}><Icon name="add"/>Add to reading List</Button>

@@ -127,8 +127,8 @@ body#signup{
 }
 
 .cropped-2{
-  height: 150px;
-  width: 250px;
+  height: 200px;
+  width: 300px;
   overflow: hidden;
   padding:4px;
   margin:3px;
@@ -136,7 +136,7 @@ body#signup{
 
 .cropped-2 img {
  height: auto;
- width: 250px;
+ width: 300px;
 }
 
 .cropped-3{
@@ -238,16 +238,16 @@ body#signup{
   position: absolute;
   left: 1%;
   top:16.5vh;
-  width: 25vw;
+  width: 35vw;
 }
 
 .country-info{
   font-family: 'Roboto', sans-serif;
   background-color:rgb(248,248,255);
   position: absolute;
-  left: 27vw;
+  left: 38vw;
   top:30vh;
-  width:69vw;
+  width:60vw;
   padding:2vw
 }
 
@@ -257,12 +257,13 @@ body#signup{
 }
 
 .flag-and-header{
-  left:52vw;
+  left:45vw;
   position: absolute;
 }
 
 .flag-and-header h1{
-  padding:1.5vw;
+  font-size: 45px;
+  padding:0.5vw;
 }
 
 
