@@ -89,15 +89,118 @@ function fetchingLocalArticles(country){
 function fetchingGuardianArticles(country){
   console.log(country)
   return(dispatch)=>{
-    fetch(`http://content.guardianapis.com/world/${country.name.toLowerCase().split(" ").join("-")}?api-key=${GuardianKey}`,{
-          mode: "cors",
-          method: "GET",
-          headers: {
-          "Accept": "application/json"
-        }
-  })
-    .then(response => response.json())
-    .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    if( country.name ==="Sierra Leone"|| country.name ==="Solomon Islands" || country.name==="Saudi Arabia"
+    || country.name==="New Zealand" || country.name ==="South Africa"|| country.name ==="Sri Lanka"
+    || country.name ==="Dominican Republic"){
+      fetch(`http://content.guardianapis.com/world/${country.name.toLowerCase().split(" ").join("")}?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+
+    }else if(country.name==="United States"){
+      fetch(`http://content.guardianapis.com/us-news?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    }
+    else if(country.name==="United Kingdom"){
+      fetch(`http://content.guardianapis.com/uk-news?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    }
+    else if(country.name==="Republic of Congo"){
+      fetch(`http://content.guardianapis.com/world/congo-brazzaville?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    }
+    else if(country.name==="Democratic Republic of the Congo"){
+      fetch(`http://content.guardianapis.com/world/congo?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    }
+    else if(country.name==="State of Palestine"){
+      fetch(`http://content.guardianapis.com/world/palestinian-territories?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    }
+    else if(country.name==="East Timor"){
+      fetch(`http://content.guardianapis.com/world/timor-leste?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    }
+    else if(country.name==="Saint Lucia"){
+      fetch(`http://content.guardianapis.com/world/stlucia?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    }
+    else if(country.name==="Federated States of Micronesia"){
+      fetch(`http://content.guardianapis.com/world/micronesia?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+    }
+    else{
+      fetch(`http://content.guardianapis.com/world/${country.name.toLowerCase().split(" ").join("-")}?api-key=${GuardianKey}`,{
+            mode: "cors",
+            method: "GET",
+            headers: {
+            "Accept": "application/json"
+          }
+        })
+      .then(response => response.json())
+      .then(data=>dispatch(fetchedGuardianArticles(data.response.results)))
+  }
 
   }
 
