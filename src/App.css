@@ -257,7 +257,7 @@ body#signup{
 }
 
 .flag-and-header{
-  left:33vw;
+  left:26vw;
   position: absolute;
 }
 
@@ -268,8 +268,9 @@ body#signup{
 
 #center-header{
   position: absolute;
-  width:30vw;
+  width:45vw;
 }
+
 
 
 
