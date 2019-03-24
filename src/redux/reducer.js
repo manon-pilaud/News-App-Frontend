@@ -17,6 +17,15 @@ const countryReducer=(oldState="",action)=>{
   }
 }
 
+const nytReducer=(oldState=[],action)=>{
+  switch(action.type){
+    case "FETCHED_NYT":
+      return action.articles
+    default:
+      return oldState
+  }
+}
+
 const guardianReducer=(oldState=[],action)=>{
   switch(action.type){
     case "FETCHED_GUARDIAN":
@@ -168,7 +177,8 @@ const rootReducer =combineReducers({
   savedArticles: savedArticlesReducer,
   userCountryNews: userCountryNewsReducer,
   filters: searchTextReducer,
-  guardianArticles: guardianReducer
+  guardianArticles: guardianReducer,
+  nytArticles: nytReducer
 })
 
 export default rootReducer

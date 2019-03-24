@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 import { Button } from 'semantic-ui-react'
-import{fetchingArticles,fetchingLocalArticles,fetchingGuardianArticles,setCountry} from '../redux/actionCreator'
+import{fetchingArticles,fetchingLocalArticles,fetchingGuardianArticles,fetchingNewYorkTimesArticles,setCountry} from '../redux/actionCreator'
 import ArticlesContainer from './ArticlesContainer'
 import WorldFacts from '../factbook.json'
 class Country extends PureComponent {
@@ -40,6 +40,7 @@ class Country extends PureComponent {
       this.props.fetchingArticles(this.props.country)
       this.props.fetchingLocalArticles(this.props.country)
       this.props.fetchingGuardianArticles(this.props.country)
+      this.props.fetchingNewYorkTimesArticles(this.props.country)
       this.props.setCountry(this.props.country)
     }
     return !this.props.country?null:(
@@ -118,6 +119,7 @@ const mapDispatchToProps=dispatch=>{
     fetchingArticles:(country)=>{dispatch(fetchingArticles(country))},
     fetchingLocalArticles:(country)=>{dispatch(fetchingLocalArticles(country))},
     fetchingGuardianArticles:(country)=>{dispatch(fetchingGuardianArticles(country))},
+    fetchingNewYorkTimesArticles:(country)=>{dispatch(fetchingNewYorkTimesArticles(country))},
     setCountry:(country)=>{dispatch(setCountry(country))},
     updateUserCountries:(data)=>{dispatch({type:"UPDATE_USER_COUNTRIES",data})},
     followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})},

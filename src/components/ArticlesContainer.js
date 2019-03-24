@@ -5,10 +5,10 @@ import LocalArticleList from './LocalArticleList'
 import AllSourcesArticleList from './AllSourcesArticleList'
 
 const panes = [
-  { menuItem: 'New York Times', render: () => <Tab.Pane></Tab.Pane> },
+  { menuItem: 'All Sources', render: () => <Tab.Pane><AllSourcesArticleList/></Tab.Pane> },
   { menuItem: 'Guardian', render: () => <Tab.Pane><GuardianList/></Tab.Pane> },
-  { menuItem: 'Local News', render: () => <Tab.Pane><LocalArticleList/></Tab.Pane> },
-  { menuItem: 'All Sources', render: () => <Tab.Pane><AllSourcesArticleList/></Tab.Pane> }
+  { menuItem: 'New York Times', render: () => <Tab.Pane></Tab.Pane> },
+  { menuItem: 'Local News', render: () => <Tab.Pane><LocalArticleList/></Tab.Pane> }
 ]
 
 const ArticlesContainer = () =>

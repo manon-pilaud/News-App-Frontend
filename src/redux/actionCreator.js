@@ -1,5 +1,6 @@
 const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
 const GuardianKey = process.env.REACT_APP_GUARDIAN_API_KEY;
+const NytKEY= process.env.REACT_APP_NYT_API_KEY
 // Testing
 // const NewsKey = "snfdajkndjscdjbcbhjbv"
 //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${country.name}&fq=news_desk:("Foreign")&begin_date=20190101&api-key=${APIKEY}
@@ -87,7 +88,6 @@ function fetchingLocalArticles(country){
 }
 
 function fetchingGuardianArticles(country){
-  console.log(country)
   return(dispatch)=>{
     if( country.name ==="Sierra Leone"|| country.name ==="Solomon Islands" || country.name==="Saudi Arabia"
     || country.name==="New Zealand" || country.name ==="South Africa"|| country.name ==="Sri Lanka"
@@ -212,18 +212,39 @@ function fetchedGuardianArticles(articles){
   return {type:"FETCHED_GUARDIAN", articles}
 }
 
+function fetchingNewYorkTimesArticles(country){
+  let today = new Date().toISOString().slice(0, 10).split("-")
+  today[today.length-1] = "01"
+  let month = today.join("")
+  return(dispatch)=>{
+    fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${country.name}&fq=news_desk:("Foreign")&begin_date=${month}&sort=newest&api-key=${NytKEY}`)
+    .then(res=>res.json())
+    .then(data=>dispatch(fetchedNewYorkTimesArticles(data.response.docs)))
+  }
+}
+
+function fetchedNewYorkTimesArticles(articles){
+  return {type:"FETCHED_NYT", articles}
+}
+
 
 function fetchingArticles(country){
+    let today = new Date()
+    today.setDate( today.getDate() - 7 )
+    var curr_date = today.getDate();
+    var curr_month = today.getMonth() + 1;
+    var curr_year = today.getFullYear();
+    let targetDate = (curr_year + "-" +"0"+ curr_month + "-" + curr_date)
   return(dispatch)=>{
     if(country.name === "Jordan"){
-      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan&sources=bbc-news&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?q=Hashemite-Kingdom-of-Jordan&from=${targetDate}&sortBy=relevancy&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
         dispatch(fetchedArticles(articles))
       })
     }
     else{
-      fetch(`https://newsapi.org/v2/everything?q=${country.name}&sources=bbc-news&apiKey=${NewsKey}`)
+      fetch(`https://newsapi.org/v2/everything?q=${country.name}&from=${targetDate}&sortBy=relevancy&apiKey=${NewsKey}`)
       .then(res=>res.json())
       .then(articles=> {
         dispatch(fetchedArticles(articles))
@@ -388,4 +409,4 @@ function clearCountryNews(){
 
 
 
-export{clearCountryNews,clearSearch,searching,setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser,fetchingGuardianArticles,fetchedGuardianArticles}
+export{clearCountryNews,clearSearch,searching,setUser,fetchedUserNews,fetchingUserNews,fetchedSavedArticles,fetchingSavedArticles,setCountry,fetchingBBC,fetchedBBC,fetchingCNN,fetchedCNN,currentUser,loggingInUser,loggedIn,loggingOut,fetchingArticles,fetchedArticles,fetchingCountries,fetchedCountries,fetchedLocalArticles,fetchingLocalArticles,creatingUser,fetchingGuardianArticles,fetchedGuardianArticles,fetchingNewYorkTimesArticles}
