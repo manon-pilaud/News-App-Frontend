@@ -45,15 +45,18 @@ class Country extends PureComponent {
     return !this.props.country?null:(
         <div>
           <div className="flag-and-header">
-          <center><h1>{this.props.country.name}</h1></center>
-          {localStorage.token?
+            <div id="center-header">
+            <center>
+              <h1>{this.props.country.name}</h1>
+            </center>
+            {localStorage.token?
             <div>
-          {!!!this.props.user.countries.find(userCountry=>userCountry.name === this.props.country.name)?
-
-          <center><Button size='mini' onClick={this.followCountry} positive>Follow {this.props.country.name}</Button></center>:
-          <center><Button size='mini' negative onClick={this.unfollowCountry}>Unfollow {this.props.country.name}</Button></center>}
+            {!!!this.props.user.countries.find(userCountry=>userCountry.name === this.props.country.name)?
+            <center><Button size='mini' onClick={this.followCountry} positive>Follow {this.props.country.name}</Button></center>:
+            <center><Button size='mini' negative onClick={this.unfollowCountry}>Unfollow {this.props.country.name}</Button></center>}
             </div>
-            :null}
+              :null}
+            </div>
           </div>
           {WorldFacts.countries[this.props.country.name.toLowerCase()]?
           <div className="country-info">
