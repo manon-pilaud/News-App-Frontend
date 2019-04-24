@@ -78,7 +78,6 @@ class Map extends Component {
   };
 
   handleOnResult = event => {
-    console.log(event.result.geometry)
     this.setState({
       searchResultLayer: new GeoJsonLayer({
         id: "search-result",
