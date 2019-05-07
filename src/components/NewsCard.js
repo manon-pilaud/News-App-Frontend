@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Button,Icon} from 'semantic-ui-react'
 class NewsCard extends React.Component{
+//REDUX FIX
   createArticle=(article)=>{
     let articleExists= this.props.savedArticles.find(savedArticle=>savedArticle.title === article.title)
     if (!!articleExists){

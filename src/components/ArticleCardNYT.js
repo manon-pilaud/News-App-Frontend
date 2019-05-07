@@ -2,10 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Button,Icon} from 'semantic-ui-react'
 class ArticleCardNYT extends React.Component{
-
+//REDUX FIX
     createArticle=(articleInfo,country_id)=>{
       let articleExists= this.props.savedArticles.find(savedArticle=>savedArticle.title === articleInfo.headline.main)
-      let image = ("https://static01.nyt.com/"+this.props.articleInfo.multimedia[0].url)
+      // let image = ("https://static01.nyt.com/"+this.props.articleInfo.multimedia[0].url)
+      let image = "https://bpi.bard.edu/wp-content/uploads/2017/08/New_York_Times_logo_variation.jpg"
       if (!!articleExists){
         this.addToReadingList(articleExists)
       }
@@ -34,6 +35,7 @@ class ArticleCardNYT extends React.Component{
         alert("Pshhht you already added this to your reading list")
       }
       else{
+
          fetch('http://localhost:3000/api/v1/reading_lists',{
           method: "POST",
           headers:{
@@ -46,13 +48,13 @@ class ArticleCardNYT extends React.Component{
           })
         })
         .then(response=>response.json())
-        .then(joinInfo=>this.props.updateReadingList(joinInfo))
-        .then(this.props.addToReadingList(data))
+        .then(joinInfo=>this.props.updateArticleReadingList(joinInfo))
+        .then(this.props.addArticleReadingList(data))
       }
     }
   render(){
     let{web_url,headline,snippet,multimedia} = this.props.articleInfo
-    let image = ("https://static01.nyt.com/"+multimedia[0].url)
+    let image = "https://bpi.bard.edu/wp-content/uploads/2017/08/New_York_Times_logo_variation.jpg"
       return(
       <div>
         <div className="articleCard">
@@ -89,8 +91,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps=dispatch=>{
   return{
-    updateReadingList:(joinInfo)=>{dispatch({type:"UPDATE_READING_LIST",joinInfo})},
-    addToReadingList:(data)=>{dispatch({type:"ADD_TO_READING_LIST",data})}
+    updateArticleReadingList:(joinInfo)=>{dispatch({type:"UPDATE_READING_LIST",joinInfo})},
+    addArticleReadingList:(data)=>{dispatch({type:"ADD_TO_READING_LIST",data})}
   }
 }
 

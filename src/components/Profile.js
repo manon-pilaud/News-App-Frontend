@@ -41,12 +41,6 @@ class Profile extends React.Component{
   }
 }
 
-// <Segment className="stream" style={{overflow: 'auto', maxHeight: 550 }}>
-//   <div >
-//     <CnnNews/>
-//     <BBCNews/>
-//   </div>
- // </Segment>
 
 const mapStateToProps=state=>{
   return{

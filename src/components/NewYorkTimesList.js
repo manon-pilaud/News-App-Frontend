@@ -5,7 +5,6 @@ import { Checkbox, Segment } from 'semantic-ui-react'
 
 class NYTList extends React.Component{
   render(){
-    console.log(this.props.nytArticles)
   return this.props.nytArticles?(
 
     <div>

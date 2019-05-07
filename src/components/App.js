@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {Route, Switch ,Redirect} from "react-router";
 import '../App.css';
-import WorldMap from './Map'
 import MapTwo from './MapTwo'
 import Country from './Country'
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {fetchingCountries,currentUser,fetchingSavedArticles} from '../redux/actionCreator'
-import Navbar from './Navbar'
 import NavbarTwo from './NavbarTwo'
 import Login from './Login'
 import Profile from './Profile'
@@ -30,7 +28,6 @@ class App extends Component {
       <div>
         <NavbarTwo/>
         <Switch>
-          <Route exact path="/oldMap" component={WorldMap} />
           <Route exact path="/map" component={MapTwo} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/feed' component={Profile}/>

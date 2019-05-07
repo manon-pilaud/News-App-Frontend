@@ -1,12 +1,8 @@
 const NewsKey = process.env.REACT_APP_NEWS_API_KEY;
 const GuardianKey = process.env.REACT_APP_GUARDIAN_API_KEY;
 const NytKEY= process.env.REACT_APP_NYT_API_KEY
-// Testing
-// const NewsKey = "snfdajkndjscdjbcbhjbv"
-//https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${country.name}&fq=news_desk:("Foreign")&begin_date=20190101&api-key=${APIKEY}
-function setCountry(country){
-  return{type:"SET_COUNTRY", country}
-}
+
+//USER AUTH ACTIONS
 
 function currentUser(){
     return (dispatch) => {
@@ -52,6 +48,47 @@ function loggedIn(userInfo){
 function loggingOut(){
     return {type: "LOGGED_OUT"}
 }
+
+
+function creatingUser(userInfo){
+  return (dispatch) =>{
+    fetch("http://localhost:3000/api/v1/users",{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                user: {
+                    username: userInfo.username,
+                    password: userInfo.password
+
+                }
+            })
+        }).then(res=>res.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error)
+            }else {
+                setUser(data,dispatch)
+            }
+      })
+  }
+}
+
+function setUser(data,dispatch){
+    if (data.success && data.token) {
+       localStorage.setItem('token', data.token)
+        dispatch({
+            type: "LOGGED_IN",
+            payload: data.userInfo
+        })
+    }else{
+        alert('something went wrong')
+    }
+}
+
+//ARTICLE FETCHING- BY COUNTRY
 
 function fetchedArticles(articles){
   return {type:"FETCHED_ARTICLES", articles}
@@ -253,6 +290,12 @@ function fetchingArticles(country){
   }
 }
 
+//USER-COUNTRIES ACTIONS
+
+function setCountry(country){
+  return{type:"SET_COUNTRY", country}
+}
+
 function fetchedCountries(countries){
   return {type:"FETCHED_COUNTRIES", countries}
 }
@@ -267,6 +310,8 @@ function fetchingCountries(){
     })
   }
 }
+
+//RSS FEEDS- TRANSFER TO REDUX
 
 let Parser = require('rss-parser');
 
@@ -316,6 +361,9 @@ function fetchedCNN(content){
   return {type:"FETCHED_CNN", content}
 }
 
+
+//USER-NEWS
+
 function fetchingSavedArticles(){
   return (dispatch) => {
     fetch(`http://localhost:3000/api/v1/articles`)
@@ -329,6 +377,8 @@ function fetchingSavedArticles(){
 function fetchedSavedArticles(articles){
   return {type:"FETCHED_SAVED_ARTICLES",articles}
 }
+
+
 
 function fetchingUserNews(country){
   let today = new Date()
@@ -364,43 +414,8 @@ function fetchedUserNews(articlesHash){
   return {type:"FETCHED_USER_COUNTRY_NEWS",articlesHash}
 }
 
-function creatingUser(userInfo){
-  return (dispatch) =>{
-    fetch("http://localhost:3000/api/v1/users",{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                user: {
-                    username: userInfo.username,
-                    password: userInfo.password
 
-                }
-            })
-        }).then(res=>res.json())
-        .then(data => {
-            if (data.error) {
-                alert(data.error)
-            }else {
-                setUser(data,dispatch)
-            }
-      })
-  }
-}
-
-function setUser(data,dispatch){
-    if (data.success && data.token) {
-       localStorage.setItem('token', data.token)
-        dispatch({
-            type: "LOGGED_IN",
-            payload: data.userInfo
-        })
-    }else{
-        alert('something went wrong')
-    }
-}
+//OTHER
 
 function searching(value){
   return {type: "SEARCHING", payload: value}

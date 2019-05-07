@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { Button, Card, Image } from 'semantic-ui-react'
 
 class ReadingListCard extends React.Component{
+//REDUX FIX
   removeFromList=(article)=>{
     let target = this.props.readingList.find(articleFromList=> articleFromList.article_id === article.id)
     fetch(`http://localhost:3000/api/v1/reading_lists/${target.id}`,{

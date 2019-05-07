@@ -9,11 +9,6 @@ const Map = ReactMapboxGl({
   accessToken: MAPKEY
 });
 
-
-
-
-
-
 const linePaint: MapboxGL.LinePaint = {
   'line-color': 'white',
   'line-width': 0.5
