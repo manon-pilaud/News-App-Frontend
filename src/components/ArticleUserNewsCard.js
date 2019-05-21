@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Card,Button} from 'semantic-ui-react'
 class ArticleUserNewsCard extends React.Component{
-//REDUX FIX
+//REDUX FIX- REUSE FROM ARTICLE CARD
   createArticle=(articleInfo,country_id)=>{
     let articleExists= this.props.savedArticles.find(savedArticle=>savedArticle.title === articleInfo.title)
     if (!!articleExists){

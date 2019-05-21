@@ -6,7 +6,7 @@ import{fetchingArticles,fetchingLocalArticles,fetchingGuardianArticles,fetchingN
 import ArticlesContainer from './ArticlesContainer'
 import WorldFacts from '../factbook.json'
 class Country extends PureComponent {
-//REDUX FIX
+//REDUX FIX COUTRY AND COUNTRY CARD REUSE
   followCountry=()=>{
   fetch('http://localhost:3000/api/v1/user_countries',{
    method: "POST",

@@ -12,7 +12,6 @@ class ArticleList extends React.Component{
     }
   }
 
-
   toggled=()=>{
     this.setState({
       toggled: !this.state.toggled

@@ -58,6 +58,36 @@ function addingGuardianToReadingList(articleInfo,countryId){
   }
 }
 
+function addingNYTToReadingList(articleInfo,countryId){
+  return(dispatch)=>{
+    let articleExists= store.getState().savedArticles.find(savedArticle=>savedArticle.title === articleInfo.headline.main)
+    if (!articleExists){
+      fetch('http://localhost:3000/api/v1/articles',{
+       method: "POST",
+       headers:{
+         "Content-Type" : "application/json",
+         "Accept" : "application/json"
+       },
+       body: JSON.stringify({
+         title: articleInfo.headline.main,
+         description: articleInfo.snippet,
+         article_url: articleInfo.web_url,
+         image_url: "https://bpi.bard.edu/wp-content/uploads/2017/08/New_York_Times_logo_variation.jpg",
+         country_id: countryId
+       })
+     })
+     .then(response=>response.json())
+     .then(data=>{dispatch
+       (addToReadingList(data))
+     })
+    }
+    else{
+      dispatch(addToReadingList(articleExists))
+    }
+  }
+}
+
+
 function addToReadingList(data){
   return(dispatch)=> {
     let currentUser = store.getState().currentUser
@@ -95,4 +125,4 @@ function addedToReadingList(data){
 }
 
 
-export{addingToReadingList,addingGuardianToReadingList}
+export{addingToReadingList,addingGuardianToReadingList,addingNYTToReadingList}

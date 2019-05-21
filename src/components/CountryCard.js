@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { Button, Card, Image,Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 class CountryCard extends React.Component{
-//REDUX FIX
+//REDUX FIX COUTRY AND COUNTRY CARD REUSE
   unfollowCountry=()=>{
     let targetCountry = this.props.followedCountries.find(followedCountry=>followedCountry.country_id === this.props.country.id)
     fetch(`http://localhost:3000/api/v1/user_countries/${targetCountry.id}`,{
