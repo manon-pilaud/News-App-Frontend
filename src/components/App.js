@@ -12,6 +12,15 @@ import Profile from './Profile'
 import UserCountries from './MyCountries'
 import ReadingList from './ReadingList'
 import SignUp from './SignUp'
+//TO DO
+  //REDUX NEWS CARD AND COUNTRY FOLLOW UNFOLLOW COMPS
+  //REFACTOR SOME CLASS COMP TO FUNCTIONAL
+  //ADD RELIGION TO COUNTRY INFO
+  //PULL COUNTY INTO INTO NEW COMP
+  //PULL ACTIONS INTO FOLDER AND SEPERATE CONCERNS
+  //COMP VS. CONT FOLDERS
+  //CALLS FROM BACK END
+//----------------------------------------------------------------------------------------------------
 
   // <iframe width="1920" scrolling="no" height="20" frameborder="0" src="https://widgets.tc2000.com/WidgetServer.ashx?id=134382"></iframe>
 class App extends Component {
