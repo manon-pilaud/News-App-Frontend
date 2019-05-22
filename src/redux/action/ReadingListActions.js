@@ -87,6 +87,34 @@ function addingNYTToReadingList(articleInfo,countryId){
   }
 }
 
+function addingRSSToReadingList(article,countryId){
+  return(dispatch)=>{
+    let articleExists= store.getState().savedArticles.find(savedArticle=>savedArticle.title === article.title)
+    if (!articleExists){
+      fetch('http://localhost:3000/api/v1/articles',{
+       method: "POST",
+       headers:{
+         "Content-Type" : "application/json",
+         "Accept" : "application/json"
+       },
+       body: JSON.stringify({
+         title: article.title,
+         description: article.contentSnippet,
+         article_url: article.link,
+         image_url: "https://ak6.picdn.net/shutterstock/videos/2233546/thumb/1.jpg",
+         country_id: 196
+       })
+     })
+     .then(response=>response.json())
+     .then(data=>{dispatch
+       (addToReadingList(data))
+     })
+    }
+    else{
+      dispatch(addToReadingList(articleExists))
+    }
+  }
+}
 
 function addToReadingList(data){
   return(dispatch)=> {
@@ -125,4 +153,4 @@ function addedToReadingList(data){
 }
 
 
-export{addingToReadingList,addingGuardianToReadingList,addingNYTToReadingList}
+export{addingToReadingList,addingGuardianToReadingList,addingNYTToReadingList,addingRSSToReadingList}
