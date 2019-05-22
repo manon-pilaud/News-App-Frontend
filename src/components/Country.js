@@ -5,36 +5,8 @@ import { Button } from 'semantic-ui-react'
 import{fetchingArticles,fetchingLocalArticles,fetchingGuardianArticles,fetchingNewYorkTimesArticles,setCountry} from '../redux/actionCreator'
 import ArticlesContainer from './ArticlesContainer'
 import WorldFacts from '../factbook.json'
+import {followingCountry,unfollowingCountry} from '../redux/action/UserCountryActions'
 class Country extends PureComponent {
-//REDUX FIX COUTRY AND COUNTRY CARD REUSE
-  followCountry=()=>{
-  fetch('http://localhost:3000/api/v1/user_countries',{
-   method: "POST",
-   headers:{
-     "Authentication": `Bearer ${localStorage.token}`,
-     "Content-Type" : "application/json",
-     "Accept" : "application/json"
-   },
-   body: JSON.stringify({
-      user_id: this.props.user.user_id,
-      country_id: this.props.country.id
-   })
- })
- .then(response=>response.json())
- .then(data=>this.props.updateUserCountries(data))
- .then(data=>this.props.followThisCountry(this.props.country,data))
-}
-
-  unfollowCountry=()=>{
-  let user_country = this.props.user.user_countries.find(userCountry=>userCountry.country_id === this.props.country.id)
-  fetch(`http://localhost:3000/api/v1/user_countries/${user_country.id}`,{
-   method: "DELETE"})
-  .then(response=>response.json())
-  .then(joinInfo=>this.props.removeRelationship(joinInfo))
-  .then(this.props.unfollowThisCountry(this.props.country))
-  //Need to remove from user_countries join table as well
-  }
-
 
   render() {
     if(this.props.country){
@@ -54,8 +26,8 @@ class Country extends PureComponent {
             {localStorage.token?
             <div>
             {!!!this.props.user.countries.find(userCountry=>userCountry.name === this.props.country.name)?
-            <center><Button size='mini' onClick={this.followCountry} positive>Follow {this.props.country.name}</Button></center>:
-            <center><Button size='mini' negative onClick={this.unfollowCountry}>Unfollow {this.props.country.name}</Button></center>}
+            <center><Button size='mini' onClick={()=>this.props.followCountry(this.props.country,this.props.user)} positive>Follow {this.props.country.name}</Button></center>:
+            <center><Button size='mini' negative onClick={()=>this.props.unfollowCountry(this.props.country)}>Unfollow {this.props.country.name}</Button></center>}
             </div>
               :null}
             </div>
@@ -122,10 +94,8 @@ const mapDispatchToProps=dispatch=>{
     fetchingGuardianArticles:(country)=>{dispatch(fetchingGuardianArticles(country))},
     fetchingNewYorkTimesArticles:(country)=>{dispatch(fetchingNewYorkTimesArticles(country))},
     setCountry:(country)=>{dispatch(setCountry(country))},
-    updateUserCountries:(data)=>{dispatch({type:"UPDATE_USER_COUNTRIES",data})},
-    followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})},
-    removeRelationship:(joinInfo)=>{dispatch({type:"REMOVE_COUNTRY_RELATIONSHIP",joinInfo})},
-    unfollowThisCountry:(country)=>{dispatch({type:"UNFOLLOW_COUNTRY",country})}
+    followCountry:(country,user)=>{dispatch(followingCountry(country,user))},
+    unfollowCountry:(country)=>{dispatch(unfollowingCountry(country))}
   }
 }
 
