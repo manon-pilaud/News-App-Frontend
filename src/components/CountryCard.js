@@ -2,36 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Button, Card, Image,Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
+import {followingCountry,unfollowingCountry} from '../redux/action/UserCountryActions'
 class CountryCard extends React.Component{
-//REDUX FIX COUTRY AND COUNTRY CARD REUSE
-  unfollowCountry=()=>{
-    let targetCountry = this.props.followedCountries.find(followedCountry=>followedCountry.country_id === this.props.country.id)
-    fetch(`http://localhost:3000/api/v1/user_countries/${targetCountry.id}`,{
-     method: "DELETE"})
-    .then(response=>response.json())
-    .then(joinInfo=>this.props.removeRelationship(joinInfo))
-    .then(this.props.unfollowThisCountry(this.props.country))
-
-    //Need to remove from user_countries join table as well
-  }
-
-  followCountry=()=>{
-  fetch('http://localhost:3000/api/v1/user_countries',{
-   method: "POST",
-   headers:{
-     "Authentication": `Bearer ${localStorage.token}`,
-     "Content-Type" : "application/json",
-     "Accept" : "application/json"
-   },
-   body: JSON.stringify({
-      user_id: this.props.user.user_id,
-      country_id: this.props.country.id
-   })
- })
- .then(response=>response.json())
- .then(data=>this.props.updateUserCountries(data))
- .then(data=>this.props.followThisCountry(this.props.country))
-  }
 
   render(){
     //Fix logic here sometimes doesn't show up
@@ -54,10 +26,10 @@ class CountryCard extends React.Component{
       <Card.Content extra>
         <div className='ui two buttons'>
         {followed_two || followed?
-          <Button basic color='red' onClick={this.unfollowCountry}>
+          <Button basic color='red' onClick={()=>this.props.unfollowCountry(this.props.country)}>
             Unfollow
           </Button>:
-            <Button  onClick={this.followCountry} basic color='green'>
+            <Button  onClick={()=>this.props.followCountry(this.props.country,this.props.user)} basic color='green'>
               Follow
             </Button>}
         </div>
@@ -77,12 +49,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps=dispatch=>{
   return{
-    followThisCountry:(country)=>{dispatch({type:"FOLLOW_COUNTRY",country})},
-    updateUserCountries:(data)=>{dispatch({type:"UPDATE_USER_COUNTRIES",data})},
-    removeRelationship:(joinInfo)=>{dispatch({type:"REMOVE_COUNTRY_RELATIONSHIP",joinInfo})},
-    unfollowThisCountry:(country)=>{dispatch({type:"UNFOLLOW_COUNTRY",country})}
-
-
+    followCountry:(country,user)=>{dispatch(followingCountry(country,user))},
+    unfollowCountry:(country)=>{dispatch(unfollowingCountry(country))}
   }
 }
 
