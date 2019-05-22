@@ -1,19 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Button, Card, Image } from 'semantic-ui-react'
-
+import {removingFromReadingList} from '../redux/action/ReadingListActions'
 class ReadingListCard extends React.Component{
-//REDUX FIX
-  removeFromList=(article)=>{
-    let target = this.props.readingList.find(articleFromList=> articleFromList.article_id === article.id)
-    fetch(`http://localhost:3000/api/v1/reading_lists/${target.id}`,{
-     method: "DELETE"})
-    .then(response=>response.json())
-    .then(joinInfo=>this.props.removeRelationshipRL(joinInfo))
-    .then(this.props.removeThisFromList(article))
-
-  }
-
   render(){
     return(
       <div>
@@ -29,7 +18,7 @@ class ReadingListCard extends React.Component{
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-          <Button basic color='red' onClick={()=>this.removeFromList(this.props.articleInfo)}>
+          <Button basic color='red' onClick={()=>this.props.removeFromReadingList(this.props.articleInfo)}>
             Remove from reading list
           </Button>
       </Card.Content>
@@ -48,8 +37,7 @@ const mapStateToProps=state=>{
 
 const mapDispatchToProps=dispatch=>{
   return{
-      removeRelationshipRL:(joinInfo)=>{dispatch({type:"REMOVE_RL_RELATIONSHIP",joinInfo})},
-      removeThisFromList:(article)=>{dispatch({type:"REMOVE_FROM_LIST",article})}
+  removeFromReadingList: (articleInfo) => {dispatch(removingFromReadingList(articleInfo))}
   }
 }
 

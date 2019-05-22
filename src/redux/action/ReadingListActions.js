@@ -152,5 +152,23 @@ function addedToReadingList(data){
   return {type:"ADD_TO_READING_LIST",data}
 }
 
+function removingFromReadingList(article){
+      return (dispatch)=>{
+        let target = store.getState().currentUser.reading_lists.find(articleFromList=> articleFromList.article_id === article.id)
+        fetch(`http://localhost:3000/api/v1/reading_lists/${target.id}`,{
+         method: "DELETE"})
+        .then(response=>response.json())
+        .then(joinInfo=>{dispatch(removeRelationshipRL(joinInfo))})
+        .then(joinInfo=>{dispatch(removeThisFromList(article))})
+    }
+}
 
-export{addingToReadingList,addingGuardianToReadingList,addingNYTToReadingList,addingRSSToReadingList}
+function removeRelationshipRL(joinInfo){
+  return {type:"REMOVE_RL_RELATIONSHIP",joinInfo}
+}
+
+function removeThisFromList(article){
+  return {type:"REMOVE_FROM_LIST",article}
+}
+
+export{addingToReadingList,addingGuardianToReadingList,addingNYTToReadingList,addingRSSToReadingList,removingFromReadingList}
